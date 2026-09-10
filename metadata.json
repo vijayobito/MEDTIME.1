@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix MedTime",
+  "description": "Smart Medical Reminder \u0026 Healthcare Management Application with real-time medicine schedules, adherence tracking, doctor appointments, caretaker linking, medical documents, and AI health assistant.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

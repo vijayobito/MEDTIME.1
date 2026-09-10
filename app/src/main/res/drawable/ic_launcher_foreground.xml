@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Centered within 66dp safe zone (21dp to 87dp) -->
+    <!-- Pill Capsule Body Diagonal -->
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:rotation="-45">
+        <!-- Capsule outer rounded rectangle -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M42,28 L66,28 A12,12 0 0,1 78,40 L78,68 A12,12 0 0,1 66,80 L42,80 A12,12 0 0,1 30,68 L30,40 A12,12 0 0,1 42,28 Z" />
+        <!-- Lower half pill tint in medical light blue -->
+        <path
+            android:fillColor="#BBDEFB"
+            android:pathData="M30,54 L78,54 L78,68 A12,12 0 0,1 66,80 L42,80 A12,12 0 0,1 30,68 Z" />
+        <!-- Capsule divider line -->
+        <path
+            android:fillColor="#00000000"
+            android:strokeColor="#1565C0"
+            android:strokeWidth="2"
+            android:pathData="M30,54 L78,54" />
+        <!-- Medical Cross on top half -->
+        <path
+            android:fillColor="#1565C0"
+            android:pathData="M51,34 L57,34 L57,40 L63,40 L63,46 L57,46 L57,52 L51,52 L51,46 L45,46 L45,40 L51,40 Z" />
+        <!-- Clock / Time indicator dots on bottom half representing MedTime -->
+        <path
+            android:fillColor="#0D47A1"
+            android:pathData="M54,63 A3,3 0 1,0 54,69 A3,3 0 1,0 54,63" />
+    </group>
+</vector>
