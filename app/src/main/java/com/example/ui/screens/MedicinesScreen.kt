@@ -70,17 +70,13 @@ fun MedicinesScreen(
     var searchQuery by remember { mutableStateOf("") }
     var selectedTab by remember { mutableIntStateOf(0) } // 0 = Active Prescriptions, 1 = Adherence Logs
     var showAddDialog by remember { mutableStateOf(false) }
-<<<<<<< HEAD
     var showVoiceDialog by remember { mutableStateOf(false) }
     var showScannerDialog by remember { mutableStateOf(false) }
     var initialScannedPill by remember { mutableStateOf<com.example.ui.components.ScannedMedicationDetails?>(null) }
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 
     var medicineToEdit by remember { mutableStateOf<MedicineEntity?>(null) }
     var medicineToDelete by remember { mutableStateOf<MedicineEntity?>(null) }
 
-<<<<<<< HEAD
     if (showVoiceDialog) {
         com.example.ui.components.VoiceMedicationLoggingDialog(
             onDismiss = { showVoiceDialog = false },
@@ -108,11 +104,6 @@ fun MedicinesScreen(
                 initialScannedPill = null
             },
             initialScannedDetails = initialScannedPill,
-=======
-    if (showAddDialog) {
-        AddMedicineDialog(
-            onDismiss = { showAddDialog = false },
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             onSave = { name, dosage, form, instructions, frequency, reminderTimes, startDate, endDate, stock, notes ->
                 viewModel.addMedicine(
                     name = name,
@@ -127,10 +118,7 @@ fun MedicinesScreen(
                     notes = notes,
                     colorHex = 0xFF1565C0
                 )
-<<<<<<< HEAD
                 initialScannedPill = null
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             }
         )
     }
@@ -304,7 +292,6 @@ fun MedicinesScreen(
                         singleLine = true
                     )
 
-<<<<<<< HEAD
                     Spacer(modifier = Modifier.height(8.dp))
 
                     // Action Buttons: Voice Intake & Barcode Scan
@@ -335,8 +322,6 @@ fun MedicinesScreen(
                         }
                     }
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                     if (!hasNotificationPermission && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                         Spacer(modifier = Modifier.height(10.dp))
                         Surface(
@@ -382,10 +367,7 @@ fun MedicinesScreen(
 
             // Tab 0: Active Prescriptions
             if (selectedTab == 0) {
-<<<<<<< HEAD
                 val lowStockMeds = medicines.filter { it.isLowStock() }
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                 val filtered = medicines.filter {
                     it.name.contains(searchQuery, ignoreCase = true) ||
                             it.instructions.contains(searchQuery, ignoreCase = true) ||
@@ -416,7 +398,6 @@ fun MedicinesScreen(
                         contentPadding = PaddingValues(16.dp),
                         verticalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
-<<<<<<< HEAD
                         if (lowStockMeds.isNotEmpty()) {
                             item {
                                 Surface(
@@ -447,18 +428,12 @@ fun MedicinesScreen(
                             }
                         }
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                         items(filtered, key = { it.id }) { med ->
                             MedicineCard(
                                 medicine = med,
                                 onEdit = { medicineToEdit = med },
-<<<<<<< HEAD
                                 onDelete = { medicineToDelete = med },
                                 onRefill = { amount -> viewModel.refillMedicine(med.id, amount) }
-=======
-                                onDelete = { medicineToDelete = med }
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                             )
                         }
                     }

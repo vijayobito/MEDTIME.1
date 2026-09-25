@@ -23,10 +23,7 @@ class BootCompletedReceiver : BroadcastReceiver() {
                     val today = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
                     val pendingReminders = db.reminderDao().getPendingRemindersForDateDirect(today)
                     Log.d("BootCompletedReceiver", "Found ${pendingReminders.size} pending reminders to reschedule.")
-<<<<<<< HEAD
                     com.example.alarm.MedicineAlarmScheduler.rescheduleAllAlarms(context)
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                     MedicalReminderScheduler.scheduleDoses(context, pendingReminders)
                     MedicationReminderScheduler.scheduleReminders(context, pendingReminders)
 

@@ -2,7 +2,6 @@ package com.example.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-<<<<<<< HEAD
 import java.util.UUID
 
 /**
@@ -34,8 +33,6 @@ data class Medication(
         else timeSlots.split(",").map { it.trim() }.filter { it.isNotEmpty() }
     }
 }
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 
 @Entity(tableName = "users")
 data class UserEntity(
@@ -54,19 +51,15 @@ data class UserEntity(
     val doctorSpecialty: String = "",
     val doctorHospital: String = "",
     val doctorLicense: String = "",
-<<<<<<< HEAD
     val doctorLicenseImageUrl: String = "",
     val doctorProfilePhotoUrl: String = "",
     val doctorIssuingCouncil: String = "State Medical Council",
     val doctorYearsExperience: Int = 8,
     val doctorVerificationSubmittedAt: Long = System.currentTimeMillis(),
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     val doctorBio: String = "",
     val caretakerLinkingCode: String = "MED-7842",
     val password: String = "password123",
     val dateOfBirth: String = "1985-05-12",
-<<<<<<< HEAD
     val address: String = "124 Indiranagar 100ft Rd, Bengaluru, Karnataka 560038",
     val latitude: Double = 12.9716,
     val longitude: Double = 77.5946,
@@ -75,8 +68,6 @@ data class UserEntity(
     val profilePhotoUrl: String = "",
     val isEmailVerified: Boolean = false,
     val accountStatus: String = "ACTIVE", // "ACTIVE", "SUSPENDED", "PROFILE_INCOMPLETE"
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     val createdAt: Long = System.currentTimeMillis()
 )
 
@@ -88,24 +79,16 @@ data class MedicineEntity(
     val dosage: String, // e.g. "500 mg"
     val form: String, // "Tablet", "Capsule", "Syrup", "Injection", "Drops", "Inhaler"
     val instructions: String, // "After food", "Before food", "With water", "Empty stomach"
-<<<<<<< HEAD
     val frequency: String, // "Daily", "Twice a day", "Three times a day", "Every 8 hours", "As needed"
-=======
-    val frequency: String, // "Daily", "Twice a day", "Three times a day", "As needed"
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     val reminderTimes: String, // e.g. "08:00 AM,02:00 PM,08:00 PM"
     val startDate: String,
     val endDate: String,
     val stockQuantity: Int = 30,
-<<<<<<< HEAD
     val lowStockThreshold: Int = 6, // Dosage-frequency based buffer threshold
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     val notes: String = "",
     val status: String = "ACTIVE", // "ACTIVE", "PAUSED", "COMPLETED"
     val colorHex: Long = 0xFF1565C0,
     val createdAt: Long = System.currentTimeMillis()
-<<<<<<< HEAD
 ) {
     /**
      * Calculates daily dosage frequency count based on reminder times or frequency label.
@@ -144,9 +127,6 @@ data class MedicineEntity(
         return stockQuantity <= calculateThreshold()
     }
 }
-=======
-)
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 
 @Entity(tableName = "medicine_reminders")
 data class MedicineReminderEntity(
@@ -161,15 +141,11 @@ data class MedicineReminderEntity(
     val scheduledTime: String, // e.g. "08:00 AM"
     val status: String = "PENDING", // "PENDING", "TAKEN", "MISSED", "SKIPPED", "SNOOZED"
     val takenAtTimestamp: Long? = null,
-<<<<<<< HEAD
     val snoozeUntilTime: String? = null,
     val attemptCount: Int = 0,
     val snoozeCount: Int = 0,
     val lastAlarmTimestamp: Long? = null,
     val skipReason: String? = null
-=======
-    val snoozeUntilTime: String? = null
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 )
 
 @Entity(tableName = "medicine_history")
@@ -229,11 +205,8 @@ data class CaretakerLinkEntity(
     val canViewMedicines: Boolean = true,
     val canViewAdherence: Boolean = true,
     val canViewAppointments: Boolean = true,
-<<<<<<< HEAD
     val canViewDocuments: Boolean = true,
     val canViewLocation: Boolean = true,
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     val canReceiveAlerts: Boolean = true,
     val createdAt: Long = System.currentTimeMillis()
 )
@@ -256,11 +229,8 @@ data class MedicalDocumentEntity(
     val resolution: String = "", // e.g. "2048x1536 px" or "A4"
     val tags: String = "", // Comma-separated tags
     val isFavorite: Boolean = false,
-<<<<<<< HEAD
     val isRecycleBin: Boolean = false,
     val deletedAt: Long? = null,
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     val uploadStatus: String = "COMPLETED", // "COMPLETED", "PROCESSING", "FAILED"
     val notes: String = "",
     val createdAt: Long = System.currentTimeMillis()
@@ -268,7 +238,6 @@ data class MedicalDocumentEntity(
 
 @Entity(tableName = "notifications")
 data class NotificationEntity(
-<<<<<<< HEAD
     @PrimaryKey val id: String = java.util.UUID.randomUUID().toString(),
     val userId: String,
     val title: String,
@@ -282,15 +251,6 @@ data class NotificationEntity(
     val severity: String = "NORMAL", // "INFO", "NORMAL", "WARNING", "CRITICAL"
     val relatedEntityId: String = "",
     val actionTaken: String = ""
-=======
-    @PrimaryKey val id: String,
-    val userId: String,
-    val title: String,
-    val message: String,
-    val type: String, // "MEDICINE", "APPOINTMENT", "CARETAKER", "DOCTOR", "SYSTEM"
-    val isRead: Boolean = false,
-    val timestamp: Long = System.currentTimeMillis()
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 )
 
 @Entity(tableName = "audit_logs")
@@ -302,7 +262,6 @@ data class AuditLogEntity(
     val details: String,
     val timestamp: Long = System.currentTimeMillis()
 )
-<<<<<<< HEAD
 
 @Entity(tableName = "announcements")
 data class AnnouncementEntity(
@@ -421,5 +380,3 @@ data class WalletTransactionEntity(
     val createdAt: Long = System.currentTimeMillis()
 )
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465

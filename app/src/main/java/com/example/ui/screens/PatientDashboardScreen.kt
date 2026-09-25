@@ -27,18 +27,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.data.model.MedicalDocumentEntity
-<<<<<<< HEAD
 import com.example.ui.components.*
 import com.example.ui.scanner.QrScannerDialog
 import com.example.ui.scanner.ShowQrCodeDialog
-=======
-import com.example.ui.components.AddDocumentDialog
-import com.example.ui.components.AddMedicineDialog
-import com.example.ui.components.BookAppointmentDialog
-import com.example.ui.components.DocumentDetailsAndPreviewDialog
-import com.example.ui.components.ReminderCard
-import com.example.ui.components.StatCard
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import com.example.ui.theme.*
 import com.example.ui.viewmodel.MedTimeViewModel
 
@@ -51,10 +42,7 @@ fun PatientDashboardScreen(
     onNavigateToMaps: () -> Unit,
     onNavigateToDocuments: () -> Unit,
     onNavigateToCaretakers: () -> Unit,
-<<<<<<< HEAD
     onNavigateToNotificationHistory: () -> Unit = {},
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
@@ -65,16 +53,12 @@ fun PatientDashboardScreen(
     val appointments by viewModel.patientAppointments.collectAsState()
     val doctors by viewModel.doctors.collectAsState()
     val documents by viewModel.documents.collectAsState()
-<<<<<<< HEAD
     val backupSummary by viewModel.lastBackupSummary.collectAsState()
     val isBackingUp by viewModel.isBackingUp.collectAsState()
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 
     var showAddMedDialog by remember { mutableStateOf(false) }
     var showBookApptDialog by remember { mutableStateOf(false) }
     var showAddDocDialog by remember { mutableStateOf(false) }
-<<<<<<< HEAD
     var showVoiceDialog by remember { mutableStateOf(false) }
     var showScannerDialog by remember { mutableStateOf(false) }
     var initialScannedPill by remember { mutableStateOf<com.example.ui.components.ScannedMedicationDetails?>(null) }
@@ -170,10 +154,6 @@ fun PatientDashboardScreen(
             }
         )
     }
-=======
-    var previewDoc by remember { mutableStateOf<MedicalDocumentEntity?>(null) }
-    var selectedDocFormatFilter by remember { mutableStateOf("ALL") }
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 
     if (showAddDocDialog) {
         AddDocumentDialog(
@@ -213,15 +193,11 @@ fun PatientDashboardScreen(
 
     if (showAddMedDialog) {
         AddMedicineDialog(
-<<<<<<< HEAD
             onDismiss = {
                 showAddMedDialog = false
                 initialScannedPill = null
             },
             initialScannedDetails = initialScannedPill,
-=======
-            onDismiss = { showAddMedDialog = false },
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             onSave = { name, dosage, form, instructions, frequency, reminderTimes, startDate, endDate, stock, notes ->
                 viewModel.addMedicine(
                     name = name,
@@ -236,10 +212,7 @@ fun PatientDashboardScreen(
                     notes = notes,
                     colorHex = 0xFF1565C0
                 )
-<<<<<<< HEAD
                 initialScannedPill = null
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             }
         )
     }
@@ -426,7 +399,6 @@ fun PatientDashboardScreen(
             }
         }
 
-<<<<<<< HEAD
         // 3. Daily Medicine Adherence Chart (Taken vs. Missed vs. Pending)
         item {
             DailyAdherenceChartCard(
@@ -436,9 +408,6 @@ fun PatientDashboardScreen(
         }
 
         // 4. Quick Action Hub
-=======
-        // 3. Quick Action Hub
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
         item {
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 Text(
@@ -452,7 +421,6 @@ fun PatientDashboardScreen(
                 ) {
                     item {
                         ActionChip(
-<<<<<<< HEAD
                             title = "Voice Intake",
                             icon = Icons.Default.Mic,
                             color = Color(0xFF673AB7),
@@ -509,8 +477,6 @@ fun PatientDashboardScreen(
                     }
                     item {
                         ActionChip(
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                             title = "Add Med",
                             icon = Icons.Default.Add,
                             color = MedBluePrimary,
@@ -535,11 +501,7 @@ fun PatientDashboardScreen(
                     }
                     item {
                         ActionChip(
-<<<<<<< HEAD
                             title = "Nearby Hospitals & Routes",
-=======
-                            title = "Nearby Hospitals",
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                             icon = Icons.Default.LocalHospital,
                             color = MedError,
                             onClick = onNavigateToMaps
@@ -565,7 +527,6 @@ fun PatientDashboardScreen(
             }
         }
 
-<<<<<<< HEAD
         // 5. Emergency Contact & SOS Dashboard Card (Phone Call & SMS Triggers)
         item {
             EmergencyContactDashboardCard(
@@ -576,8 +537,6 @@ fun PatientDashboardScreen(
             )
         }
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
         // 4. Today's Medicine Reminders
         item {
             Row(

@@ -24,11 +24,8 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-<<<<<<< HEAD
 import com.example.ui.scanner.QrScannerDialog
 import com.example.ui.scanner.ShowQrCodeDialog
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import com.example.ui.theme.*
 import com.example.ui.viewmodel.MedTimeViewModel
 
@@ -45,7 +42,6 @@ fun CaretakerScreen(
     val caretakerLinks by viewModel.caretakerLinks.collectAsState()
 
     var linkingCodeInput by remember { mutableStateOf("") }
-<<<<<<< HEAD
     var showQrCodeDialog by remember { mutableStateOf(false) }
     var showQrScannerDialog by remember { mutableStateOf(false) }
 
@@ -64,8 +60,6 @@ fun CaretakerScreen(
             }
         )
     }
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 
     LazyColumn(
         modifier = modifier
@@ -101,15 +95,9 @@ fun CaretakerScreen(
                             border = androidx.compose.foundation.BorderStroke(1.dp, Color.White.copy(alpha = 0.4f))
                         ) {
                             Row(
-<<<<<<< HEAD
                                 modifier = Modifier.padding(horizontal = 20.dp, vertical = 10.dp),
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.spacedBy(10.dp)
-=======
-                                modifier = Modifier.padding(horizontal = 24.dp, vertical = 12.dp),
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(12.dp)
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                             ) {
                                 Text(
                                     text = currentUser?.caretakerLinkingCode ?: "MED-7842",
@@ -124,18 +112,13 @@ fun CaretakerScreen(
                                         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                                         val clip = ClipData.newPlainText("Caretaker Code", currentUser?.caretakerLinkingCode ?: "MED-7842")
                                         clipboard.setPrimaryClip(clip)
-<<<<<<< HEAD
                                     },
                                     modifier = Modifier.testTag("btn_copy_caretaker_code")
-=======
-                                    }
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                                 ) {
                                     Icon(Icons.Outlined.ContentCopy, contentDescription = "Copy", tint = Color.White)
                                 }
                             }
                         }
-<<<<<<< HEAD
                         Spacer(modifier = Modifier.height(10.dp))
                         Row(
                             horizontalArrangement = Arrangement.spacedBy(10.dp),
@@ -166,11 +149,6 @@ fun CaretakerScreen(
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
                             text = "Share this secure code or let your caregiver scan your QR code so they can monitor your medication adherence.",
-=======
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Text(
-                            text = "Share this secure code with your family member or caretaker so they can monitor your medication adherence.",
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                             style = MaterialTheme.typography.bodySmall,
                             color = Color.White.copy(alpha = 0.85f),
                             modifier = Modifier.padding(horizontal = 16.dp)
@@ -348,7 +326,6 @@ fun CaretakerScreen(
                                 onValueChange = { linkingCodeInput = it },
                                 placeholder = { Text("e.g. MED-7842") },
                                 modifier = Modifier.weight(1f).testTag("input_caretaker_code"),
-<<<<<<< HEAD
                                 singleLine = true,
                                 trailingIcon = {
                                     IconButton(
@@ -362,9 +339,6 @@ fun CaretakerScreen(
                                         )
                                     }
                                 }
-=======
-                                singleLine = true
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                             )
                             Button(
                                 onClick = {
@@ -380,7 +354,6 @@ fun CaretakerScreen(
                                 Text("Link Patient")
                             }
                         }
-<<<<<<< HEAD
 
                         // Quick QR Code Scan Action Banner
                         Surface(
@@ -434,8 +407,6 @@ fun CaretakerScreen(
                                 }
                             }
                         }
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                     }
                 }
             }
@@ -515,7 +486,6 @@ fun CaretakerScreen(
                                     Text("Adherence: ${if (link.canViewAdherence) "Live Sync" else "Restricted"}", style = MaterialTheme.typography.bodySmall)
                                     Text("Emergency Alerts: ${if (link.canReceiveAlerts) "Enabled" else "Off"}", style = MaterialTheme.typography.bodySmall, color = MedSuccess)
                                 }
-<<<<<<< HEAD
 
                                 Spacer(modifier = Modifier.height(12.dp))
                                 HorizontalDivider(color = MedBorder)
@@ -553,8 +523,6 @@ fun CaretakerScreen(
                                         Text("Check In", fontSize = 11.sp)
                                     }
                                 }
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                             }
                         }
                     }

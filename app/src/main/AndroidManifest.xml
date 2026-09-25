@@ -3,18 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-<<<<<<< HEAD
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-<<<<<<< HEAD
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
@@ -28,8 +24,6 @@
     <uses-feature
         android:name="android.hardware.camera.autofocus"
         android:required="false" />
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 
     <application
         android:allowBackup="true"
@@ -52,7 +46,6 @@
             </intent-filter>
         </activity>
 
-<<<<<<< HEAD
         <!-- Full-Screen Native Medicine Alarm Activity -->
         <activity
             android:name=".ui.alarm.MedicineAlarmActivity"
@@ -83,8 +76,6 @@
             </intent-filter>
         </receiver>
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
         <receiver
             android:name=".worker.MedicationActionReceiver"
             android:exported="false">
@@ -92,10 +83,7 @@
                 <action android:name="com.example.action.TAKE_MEDICATION_DOSE" />
                 <action android:name="com.example.action.SNOOZE_MEDICATION_DOSE" />
                 <action android:name="com.example.action.DISMISS_MEDICATION_DOSE" />
-<<<<<<< HEAD
                 <action android:name="com.example.action.SKIP_MEDICATION_DOSE" />
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             </intent-filter>
         </receiver>
 
@@ -105,7 +93,6 @@
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-<<<<<<< HEAD
                 <action android:name="android.intent.action.TIME_SET" />
                 <action android:name="android.intent.action.TIMEZONE_CHANGED" />
             </intent-filter>
@@ -120,10 +107,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-=======
-            </intent-filter>
-        </receiver>
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     </application>
 
 </manifest>

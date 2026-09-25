@@ -2,7 +2,6 @@ package com.example.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-<<<<<<< HEAD
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -10,19 +9,12 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-=======
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-<<<<<<< HEAD
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
@@ -33,63 +25,43 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
-<<<<<<< HEAD
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.data.model.AppointmentEntity
-=======
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import com.example.ui.components.AppointmentCard
 import com.example.ui.components.BookAppointmentDialog
 import com.example.ui.theme.*
 import com.example.ui.viewmodel.MedTimeViewModel
-<<<<<<< HEAD
 import java.text.SimpleDateFormat
 import java.util.*
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppointmentsScreen(
     viewModel: MedTimeViewModel,
     onOpenChatWithDoctor: (doctorId: String, doctorName: String) -> Unit,
-<<<<<<< HEAD
     onNavigateToMaps: () -> Unit = {},
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     modifier: Modifier = Modifier
 ) {
     val appointments by viewModel.patientAppointments.collectAsState()
     val doctors by viewModel.doctors.collectAsState()
 
-<<<<<<< HEAD
     var selectedFilterIndex by remember { mutableIntStateOf(0) } // 0 = Upcoming, 1 = All, 2 = Past, 3 = Calendar View
     var showBookDialog by remember { mutableStateOf(false) }
     var preselectedDateForBooking by remember { mutableStateOf<String?>(null) }
     var calendarSelectedDate by remember { mutableStateOf<String?>(null) }
     var currentCalendarMonth by remember { mutableStateOf(Calendar.getInstance()) }
-=======
-    var selectedFilterIndex by remember { mutableIntStateOf(0) } // 0 = Upcoming, 1 = All, 2 = Past
-    var showBookDialog by remember { mutableStateOf(false) }
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 
     // Dialog for scheduling appointment
     if (showBookDialog) {
         BookAppointmentDialog(
             doctors = doctors,
-<<<<<<< HEAD
             initialDate = preselectedDateForBooking,
             onDismiss = {
                 showBookDialog = false
                 preselectedDateForBooking = null
             },
-=======
-            onDismiss = { showBookDialog = false },
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             onBook = { docId, docName, spec, date, time, reason, reminderEnabled, reminderMinutesBefore ->
                 viewModel.bookAppointment(
                     doctorId = docId,
@@ -101,10 +73,7 @@ fun AppointmentsScreen(
                     reminderEnabled = reminderEnabled,
                     reminderMinutesBefore = reminderMinutesBefore
                 )
-<<<<<<< HEAD
                 preselectedDateForBooking = null
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             }
         )
     }
@@ -117,7 +86,6 @@ fun AppointmentsScreen(
         0 -> upcomingAppointments
         1 -> appointments
         2 -> pastAppointments
-<<<<<<< HEAD
         3 -> {
             if (calendarSelectedDate != null) {
                 appointments.filter { it.appointmentDate == calendarSelectedDate }
@@ -125,8 +93,6 @@ fun AppointmentsScreen(
                 upcomingAppointments
             }
         }
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
         else -> appointments
     }
 
@@ -200,7 +166,6 @@ fun AppointmentsScreen(
                             }
                         }
 
-<<<<<<< HEAD
                         Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                             OutlinedButton(
                                 onClick = onNavigateToMaps,
@@ -223,16 +188,6 @@ fun AppointmentsScreen(
                                 Spacer(modifier = Modifier.width(4.dp))
                                 Text("Book", fontSize = 11.sp, fontWeight = FontWeight.Bold)
                             }
-=======
-                        FilledTonalButton(
-                            onClick = { showBookDialog = true },
-                            contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp),
-                            modifier = Modifier.testTag("button_schedule_consultation")
-                        ) {
-                            Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(16.dp))
-                            Spacer(modifier = Modifier.width(4.dp))
-                            Text("Book", fontSize = 12.sp, fontWeight = FontWeight.Bold)
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                         }
                     }
 
@@ -285,24 +240,16 @@ fun AppointmentsScreen(
             }
 
             // Tab navigation
-<<<<<<< HEAD
             ScrollableTabRow(
                 selectedTabIndex = selectedFilterIndex,
                 containerColor = MedSurface,
                 contentColor = MedBluePrimary,
                 edgePadding = 16.dp,
-=======
-            TabRow(
-                selectedTabIndex = selectedFilterIndex,
-                containerColor = MedSurface,
-                contentColor = MedBluePrimary,
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Tab(
                     selected = selectedFilterIndex == 0,
                     onClick = { selectedFilterIndex = 0 },
-<<<<<<< HEAD
                     text = { Text("Calendar View", fontWeight = FontWeight.Bold) },
                     icon = { Icon(Icons.Default.CalendarMonth, contentDescription = null, modifier = Modifier.size(16.dp)) },
                     modifier = Modifier.testTag("tab_calendar_view")
@@ -310,36 +257,23 @@ fun AppointmentsScreen(
                 Tab(
                     selected = selectedFilterIndex == 1,
                     onClick = { selectedFilterIndex = 1 },
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                     text = { Text("Upcoming (${upcomingAppointments.size})", fontWeight = FontWeight.Bold) },
                     modifier = Modifier.testTag("tab_upcoming_appointments")
                 )
                 Tab(
-<<<<<<< HEAD
                     selected = selectedFilterIndex == 2,
                     onClick = { selectedFilterIndex = 2 },
-=======
-                    selected = selectedFilterIndex == 1,
-                    onClick = { selectedFilterIndex = 1 },
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                     text = { Text("All (${appointments.size})", fontWeight = FontWeight.Bold) },
                     modifier = Modifier.testTag("tab_all_appointments")
                 )
                 Tab(
-<<<<<<< HEAD
                     selected = selectedFilterIndex == 3,
                     onClick = { selectedFilterIndex = 3 },
-=======
-                    selected = selectedFilterIndex == 2,
-                    onClick = { selectedFilterIndex = 2 },
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                     text = { Text("Past (${pastAppointments.size})", fontWeight = FontWeight.Bold) },
                     modifier = Modifier.testTag("tab_past_appointments")
                 )
             }
 
-<<<<<<< HEAD
             if (selectedFilterIndex == 0) {
                 // Calendar Layout Mode
                 AppointmentsCalendarSection(
@@ -766,96 +700,6 @@ fun AppointmentsCalendarSection(
                     onViewRoute = onNavigateToMaps,
                     modifier = Modifier.testTag("calendar_appointment_card_${appt.id}")
                 )
-=======
-            // List or Empty View
-            if (displayedAppointments.isEmpty()) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(24.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(16.dp),
-                        shape = RoundedCornerShape(16.dp),
-                        colors = CardDefaults.cardColors(containerColor = MedSurface),
-                        border = androidx.compose.foundation.BorderStroke(1.dp, MedBorder)
-                    ) {
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(24.dp),
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            Box(
-                                modifier = Modifier
-                                    .size(64.dp)
-                                    .clip(CircleShape)
-                                    .background(MedBlueLight),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Default.EventNote,
-                                    contentDescription = null,
-                                    tint = MedBluePrimary,
-                                    modifier = Modifier.size(32.dp)
-                                )
-                            }
-                            Spacer(modifier = Modifier.height(14.dp))
-                            Text(
-                                text = if (selectedFilterIndex == 0) "No Upcoming Appointments" else "No Appointments Found",
-                                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                                color = MedTextPrimary
-                            )
-                            Spacer(modifier = Modifier.height(6.dp))
-                            Text(
-                                text = "Schedule consultations with verified specialists and get automatic reminder notifications.",
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MedTextSecondary,
-                                textAlign = androidx.compose.ui.text.style.TextAlign.Center
-                            )
-                            Spacer(modifier = Modifier.height(18.dp))
-                            Button(
-                                onClick = { showBookDialog = true },
-                                colors = ButtonDefaults.buttonColors(containerColor = MedBluePrimary),
-                                shape = RoundedCornerShape(12.dp),
-                                modifier = Modifier.testTag("button_empty_book_appointment")
-                            ) {
-                                Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(16.dp))
-                                Spacer(modifier = Modifier.width(6.dp))
-                                Text("Schedule Consultation Now")
-                            }
-                        }
-                    }
-                }
-            } else {
-                LazyColumn(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .testTag("list_appointments"),
-                    contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 80.dp),
-                    verticalArrangement = Arrangement.spacedBy(14.dp)
-                ) {
-                    items(displayedAppointments, key = { it.id }) { appt ->
-                        AppointmentCard(
-                            appointment = appt,
-                            isDoctorView = false,
-                            onCancel = {
-                                viewModel.updateAppointmentStatus(appt.id, "CANCELLED", "Cancelled by patient")
-                            },
-                            onToggleReminder = {
-                                viewModel.toggleAppointmentReminder(appt)
-                            },
-                            onChat = {
-                                onOpenChatWithDoctor(appt.doctorId, appt.doctorName)
-                            },
-                            modifier = Modifier.testTag("appointment_card_${appt.id}")
-                        )
-                    }
-                }
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             }
         }
     }

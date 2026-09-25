@@ -31,12 +31,8 @@ fun NotificationsSheet(
     notifications: List<NotificationEntity>,
     onDismiss: () -> Unit,
     onMarkRead: (String) -> Unit,
-<<<<<<< HEAD
     onMarkAllRead: () -> Unit,
     onViewFullHistory: () -> Unit = {}
-=======
-    onMarkAllRead: () -> Unit
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 ) {
     ModalBottomSheet(
         onDismissRequest = onDismiss,
@@ -57,7 +53,6 @@ fun NotificationsSheet(
                     text = "Notifications (${notifications.size})",
                     style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold)
                 )
-<<<<<<< HEAD
                 Row {
                     TextButton(onClick = {
                         onDismiss()
@@ -69,11 +64,6 @@ fun NotificationsSheet(
                         TextButton(onClick = onMarkAllRead) {
                             Text("Mark all read", color = MedBluePrimary)
                         }
-=======
-                if (notifications.any { !it.isRead }) {
-                    TextButton(onClick = onMarkAllRead) {
-                        Text("Mark all read", color = MedBluePrimary)
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                     }
                 }
             }

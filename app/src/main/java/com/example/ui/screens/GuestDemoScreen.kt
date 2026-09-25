@@ -32,13 +32,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-<<<<<<< HEAD
 import com.example.ui.components.DailyAdherenceChartCard
 import com.example.ui.theme.*
 import com.example.ui.viewmodel.DashboardStats
-=======
-import com.example.ui.theme.*
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import com.example.ui.viewmodel.MedTimeViewModel
 
 // Separate in-memory demo data structures for Guest Mode
@@ -856,7 +852,6 @@ private fun GuestRemindersView(
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
-<<<<<<< HEAD
         // Demo adherence chart card
         item {
             val missedCount = reminders.count { it.status == "SKIPPED" || it.status == "MISSED" }
@@ -891,54 +886,6 @@ private fun GuestRemindersView(
                     Icon(Icons.Default.Refresh, contentDescription = null, modifier = Modifier.size(16.dp))
                     Spacer(modifier = Modifier.width(4.dp))
                     Text("Reset Demo", fontSize = 12.sp)
-=======
-        // Demo adherence card
-        item {
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(16.dp))
-                    .border(1.dp, MedBorder, RoundedCornerShape(16.dp)),
-                colors = CardDefaults.cardColors(containerColor = MedSurface)
-            ) {
-                Column(modifier = Modifier.padding(18.dp)) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Column {
-                            Text(
-                                text = "Today's Demo Schedule",
-                                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                                color = MedTextPrimary
-                            )
-                            Text(
-                                text = "$takenCount of $totalCount taken • $adherencePercent% adherence",
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MedTextSecondary
-                            )
-                        }
-
-                        TextButton(onClick = onResetDemo) {
-                            Icon(Icons.Default.Refresh, contentDescription = null, modifier = Modifier.size(16.dp))
-                            Spacer(modifier = Modifier.width(4.dp))
-                            Text("Reset", fontSize = 12.sp)
-                        }
-                    }
-
-                    Spacer(modifier = Modifier.height(10.dp))
-
-                    LinearProgressIndicator(
-                        progress = { adherencePercent / 100f },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(8.dp)
-                            .clip(RoundedCornerShape(4.dp)),
-                        color = MedSuccess,
-                        trackColor = MedBorder
-                    )
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                 }
             }
         }

@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-<<<<<<< HEAD
 import com.example.data.model.AnnouncementEntity
 import com.example.data.model.AppointmentEntity
 import com.example.data.model.AuditLogEntity
@@ -13,25 +12,15 @@ import com.example.data.model.CaretakerAssistanceRequestEntity
 import com.example.data.model.CaretakerLinkEntity
 import com.example.data.model.MedicalDocumentEntity
 import com.example.data.model.Medication
-=======
-import com.example.data.model.AppointmentEntity
-import com.example.data.model.AuditLogEntity
-import com.example.data.model.CaretakerLinkEntity
-import com.example.data.model.MedicalDocumentEntity
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import com.example.data.model.MedicineEntity
 import com.example.data.model.MedicineHistoryEntity
 import com.example.data.model.MedicineReminderEntity
 import com.example.data.model.MessageEntity
 import com.example.data.model.NotificationEntity
-<<<<<<< HEAD
 import com.example.data.model.PatientAddressEntity
 import com.example.data.model.UserEntity
 import com.example.data.model.WalletEntity
 import com.example.data.model.WalletTransactionEntity
-=======
-import com.example.data.model.UserEntity
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -45,7 +34,6 @@ interface UserDao {
     @Query("SELECT * FROM users WHERE LOWER(email) = LOWER(:identifier) OR phone = :identifier LIMIT 1")
     suspend fun getUserByEmailOrPhone(identifier: String): UserEntity?
 
-<<<<<<< HEAD
     @Query("SELECT * FROM users WHERE authProvider = :provider AND providerUserId = :providerUserId LIMIT 1")
     suspend fun getUserByProvider(provider: String, providerUserId: String): UserEntity?
 
@@ -55,18 +43,12 @@ interface UserDao {
     @Query("SELECT * FROM users")
     suspend fun getAllUsersList(): List<UserEntity>
 
-=======
-    @Query("SELECT * FROM users ORDER BY createdAt DESC")
-    fun getAllUsers(): Flow<List<UserEntity>>
-
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     @Query("SELECT * FROM users WHERE role = 'DOCTOR'")
     fun getAllDoctors(): Flow<List<UserEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUser(user: UserEntity)
 
-<<<<<<< HEAD
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUsers(users: List<UserEntity>)
 
@@ -75,10 +57,6 @@ interface UserDao {
 
     @Query("DELETE FROM users WHERE id = :id")
     suspend fun deleteUser(id: String)
-=======
-    @Update
-    suspend fun updateUser(user: UserEntity)
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 }
 
 @Dao
@@ -86,24 +64,18 @@ interface MedicineDao {
     @Query("SELECT * FROM medicines WHERE patientId = :patientId ORDER BY createdAt DESC")
     fun getMedicinesByPatient(patientId: String): Flow<List<MedicineEntity>>
 
-<<<<<<< HEAD
     @Query("SELECT * FROM medicines")
     suspend fun getAllMedicinesList(): List<MedicineEntity>
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     @Query("SELECT * FROM medicines WHERE id = :id")
     suspend fun getMedicineById(id: String): MedicineEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMedicine(medicine: MedicineEntity)
 
-<<<<<<< HEAD
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMedicines(medicines: List<MedicineEntity>)
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     @Update
     suspend fun updateMedicine(medicine: MedicineEntity)
 
@@ -119,12 +91,9 @@ interface MedicineReminderDao {
     @Query("SELECT * FROM medicine_reminders WHERE patientId = :patientId ORDER BY scheduledDate DESC, scheduledTime ASC")
     fun getAllRemindersForPatient(patientId: String): Flow<List<MedicineReminderEntity>>
 
-<<<<<<< HEAD
     @Query("SELECT * FROM medicine_reminders")
     suspend fun getAllRemindersList(): List<MedicineReminderEntity>
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     @Query("SELECT * FROM medicine_reminders WHERE id = :id")
     suspend fun getReminderById(id: String): MedicineReminderEntity?
 
@@ -137,7 +106,6 @@ interface MedicineReminderDao {
     @Query("UPDATE medicine_reminders SET status = :status, takenAtTimestamp = :timestamp WHERE id = :id")
     suspend fun updateReminderStatus(id: String, status: String, timestamp: Long? = null)
 
-<<<<<<< HEAD
     @Query("UPDATE medicine_reminders SET status = 'SNOOZED', snoozeUntilTime = :snoozeUntil, snoozeCount = snoozeCount + 1, lastAlarmTimestamp = :timestamp WHERE id = :id")
     suspend fun snoozeReminderWithCount(id: String, snoozeUntil: String, timestamp: Long = System.currentTimeMillis())
 
@@ -161,13 +129,6 @@ interface MedicineReminderDao {
 
     @Query("DELETE FROM medicine_reminders WHERE medicineId = :medicineId")
     suspend fun deleteRemindersByMedicineId(medicineId: String)
-=======
-    @Query("UPDATE medicine_reminders SET status = 'SNOOZED', snoozeUntilTime = :snoozeUntil WHERE id = :id")
-    suspend fun snoozeReminder(id: String, snoozeUntil: String)
-
-    @Query("SELECT * FROM medicine_reminders WHERE (status = 'PENDING' OR status = 'SNOOZED') AND scheduledDate = :date")
-    suspend fun getPendingRemindersForDateDirect(date: String): List<MedicineReminderEntity>
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 }
 
 @Dao
@@ -175,7 +136,6 @@ interface MedicineHistoryDao {
     @Query("SELECT * FROM medicine_history WHERE patientId = :patientId ORDER BY actionTimestamp DESC")
     fun getHistoryForPatient(patientId: String): Flow<List<MedicineHistoryEntity>>
 
-<<<<<<< HEAD
     @Query("SELECT * FROM medicine_history")
     suspend fun getAllHistoryList(): List<MedicineHistoryEntity>
 
@@ -184,10 +144,6 @@ interface MedicineHistoryDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertHistories(historyList: List<MedicineHistoryEntity>)
-=======
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertHistory(history: MedicineHistoryEntity)
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 }
 
 @Dao
@@ -201,24 +157,18 @@ interface AppointmentDao {
     @Query("SELECT * FROM appointments ORDER BY appointmentDate DESC")
     fun getAllAppointments(): Flow<List<AppointmentEntity>>
 
-<<<<<<< HEAD
     @Query("SELECT * FROM appointments")
     suspend fun getAllAppointmentsList(): List<AppointmentEntity>
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     @Query("SELECT * FROM appointments WHERE doctorId = :doctorId AND appointmentDate = :date AND appointmentTime = :time AND status != 'CANCELLED' LIMIT 1")
     suspend fun findExistingAppointment(doctorId: String, date: String, time: String): AppointmentEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAppointment(appointment: AppointmentEntity)
 
-<<<<<<< HEAD
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAppointments(appointments: List<AppointmentEntity>)
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     @Query("UPDATE appointments SET status = :status, doctorNotes = :notes WHERE id = :id")
     suspend fun updateAppointmentStatus(id: String, status: String, notes: String = "")
 
@@ -234,7 +184,6 @@ interface MessageDao {
     @Query("SELECT * FROM messages WHERE senderId = :userId OR receiverId = :userId ORDER BY timestamp DESC")
     fun getAllMessagesForUser(userId: String): Flow<List<MessageEntity>>
 
-<<<<<<< HEAD
     @Query("SELECT * FROM messages")
     suspend fun getAllMessagesList(): List<MessageEntity>
 
@@ -244,47 +193,33 @@ interface MessageDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMessages(messages: List<MessageEntity>)
 
-=======
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMessage(message: MessageEntity)
-
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     @Query("UPDATE messages SET isRead = 1 WHERE conversationId = :conversationId AND receiverId = :userId")
     suspend fun markConversationAsRead(conversationId: String, userId: String)
 }
 
 @Dao
 interface CaretakerLinkDao {
-<<<<<<< HEAD
     @Query("SELECT * FROM caretaker_links ORDER BY createdAt DESC")
     fun getAllLinks(): Flow<List<CaretakerLinkEntity>>
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     @Query("SELECT * FROM caretaker_links WHERE patientId = :patientId")
     fun getLinksForPatient(patientId: String): Flow<List<CaretakerLinkEntity>>
 
     @Query("SELECT * FROM caretaker_links WHERE caretakerId = :caretakerId")
     fun getLinksForCaretaker(caretakerId: String): Flow<List<CaretakerLinkEntity>>
 
-<<<<<<< HEAD
     @Query("SELECT * FROM caretaker_links")
     suspend fun getAllLinksList(): List<CaretakerLinkEntity>
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     @Query("SELECT * FROM caretaker_links WHERE linkingCode = :code LIMIT 1")
     suspend fun findLinkByCode(code: String): CaretakerLinkEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertLink(link: CaretakerLinkEntity)
 
-<<<<<<< HEAD
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertLinks(links: List<CaretakerLinkEntity>)
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     @Query("UPDATE caretaker_links SET status = :status WHERE id = :id")
     suspend fun updateLinkStatus(id: String, status: String)
 
@@ -297,7 +232,6 @@ interface CaretakerLinkDao {
 
 @Dao
 interface MedicalDocumentDao {
-<<<<<<< HEAD
     @Query("SELECT * FROM medical_documents WHERE patientId = :patientId AND isRecycleBin = 0 ORDER BY createdAt DESC")
     fun getDocumentsForPatient(patientId: String): Flow<List<MedicalDocumentEntity>>
 
@@ -314,18 +248,6 @@ interface MedicalDocumentDao {
     fun getFavoriteDocuments(patientId: String): Flow<List<MedicalDocumentEntity>>
 
     @Query("SELECT * FROM medical_documents WHERE patientId = :patientId AND isRecycleBin = 0 AND (title LIKE '%' || :query || '%' OR doctorOrClinic LIKE '%' || :query || '%' OR tags LIKE '%' || :query || '%' OR notes LIKE '%' || :query || '%') ORDER BY createdAt DESC")
-=======
-    @Query("SELECT * FROM medical_documents WHERE patientId = :patientId ORDER BY createdAt DESC")
-    fun getDocumentsForPatient(patientId: String): Flow<List<MedicalDocumentEntity>>
-
-    @Query("SELECT * FROM medical_documents WHERE patientId = :patientId AND fileFormat = :format ORDER BY createdAt DESC")
-    fun getDocumentsByFormat(patientId: String, format: String): Flow<List<MedicalDocumentEntity>>
-
-    @Query("SELECT * FROM medical_documents WHERE patientId = :patientId AND isFavorite = 1 ORDER BY createdAt DESC")
-    fun getFavoriteDocuments(patientId: String): Flow<List<MedicalDocumentEntity>>
-
-    @Query("SELECT * FROM medical_documents WHERE patientId = :patientId AND (title LIKE '%' || :query || '%' OR doctorOrClinic LIKE '%' || :query || '%' OR tags LIKE '%' || :query || '%' OR notes LIKE '%' || :query || '%') ORDER BY createdAt DESC")
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     fun searchDocuments(patientId: String, query: String): Flow<List<MedicalDocumentEntity>>
 
     @Query("SELECT * FROM medical_documents WHERE id = :id LIMIT 1")
@@ -334,7 +256,6 @@ interface MedicalDocumentDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDocument(document: MedicalDocumentEntity)
 
-<<<<<<< HEAD
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDocuments(documents: List<MedicalDocumentEntity>)
 
@@ -358,16 +279,6 @@ interface MedicalDocumentDao {
 
     @Query("SELECT COUNT(*) FROM medical_documents WHERE patientId = :patientId AND isRecycleBin = 1")
     fun getRecycleBinCount(patientId: String): Flow<Int>
-=======
-    @Query("UPDATE medical_documents SET isFavorite = :isFavorite WHERE id = :id")
-    suspend fun toggleFavorite(id: String, isFavorite: Boolean)
-
-    @Query("DELETE FROM medical_documents WHERE id = :id")
-    suspend fun deleteDocument(id: String)
-
-    @Query("SELECT COUNT(*) FROM medical_documents WHERE patientId = :patientId")
-    fun getDocumentCount(patientId: String): Flow<Int>
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 }
 
 @Dao
@@ -375,7 +286,6 @@ interface NotificationDao {
     @Query("SELECT * FROM notifications WHERE userId = :userId ORDER BY timestamp DESC")
     fun getNotificationsForUser(userId: String): Flow<List<NotificationEntity>>
 
-<<<<<<< HEAD
     @Query("SELECT * FROM notifications WHERE userId = :userId AND (type = 'CARETAKER' OR type = 'MISSED_DOSE' OR type = 'EMERGENCY_SOS' OR recipientRole = 'CARETAKER' OR recipientRole = 'PATIENT_AND_CARETAKER') ORDER BY timestamp DESC")
     fun getCaretakerAlertsForUser(userId: String): Flow<List<NotificationEntity>>
 
@@ -385,15 +295,12 @@ interface NotificationDao {
     @Query("SELECT * FROM notifications")
     suspend fun getAllNotificationsList(): List<NotificationEntity>
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     @Query("SELECT COUNT(*) FROM notifications WHERE userId = :userId AND isRead = 0")
     fun getUnreadCount(userId: String): Flow<Int>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNotification(notification: NotificationEntity)
 
-<<<<<<< HEAD
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNotifications(notifications: List<NotificationEntity>)
 
@@ -403,11 +310,6 @@ interface NotificationDao {
     @Query("UPDATE notifications SET isRead = 0 WHERE id = :id")
     suspend fun markAsUnread(id: String)
 
-=======
-    @Query("UPDATE notifications SET isRead = 1 WHERE id = :id")
-    suspend fun markAsRead(id: String)
-
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     @Query("UPDATE notifications SET isRead = 1 WHERE userId = :userId")
     suspend fun markAllAsRead(userId: String)
 
@@ -420,7 +322,6 @@ interface AuditLogDao {
     @Query("SELECT * FROM audit_logs ORDER BY timestamp DESC")
     fun getAllLogs(): Flow<List<AuditLogEntity>>
 
-<<<<<<< HEAD
     @Query("SELECT * FROM audit_logs")
     suspend fun getAllLogsList(): List<AuditLogEntity>
 
@@ -619,8 +520,3 @@ interface PatientAddressDao {
 
 
 
-=======
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertLog(log: AuditLogEntity)
-}
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465

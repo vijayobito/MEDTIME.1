@@ -107,7 +107,6 @@ private val DarkColorScheme = darkColorScheme(
     scrim = Color.Black
 )
 
-<<<<<<< HEAD
 /**
  * ThemeMode options for MedTime:
  * - SYSTEM: Automatically follow system theme
@@ -120,8 +119,6 @@ enum class ThemeMode(val title: String, val description: String) {
     DARK("Dark Mode", "High-contrast clinical night theme")
 }
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 // =============================================================================
 // MaterialTheme Wrappers
 // =============================================================================
@@ -133,16 +130,12 @@ enum class ThemeMode(val title: String, val description: String) {
  */
 @Composable
 fun MedTimeTheme(
-<<<<<<< HEAD
     themeMode: ThemeMode = ThemeMode.SYSTEM,
     darkTheme: Boolean = when (themeMode) {
         ThemeMode.SYSTEM -> isSystemInDarkTheme()
         ThemeMode.LIGHT -> false
         ThemeMode.DARK -> true
     },
-=======
-    darkTheme: Boolean = isSystemInDarkTheme(),
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     dynamicColor: Boolean = false, // Healthcare branding mandates fixed cohesive palette
     content: @Composable () -> Unit
 ) {
@@ -173,24 +166,17 @@ fun MedTimeTheme(
  */
 @Composable
 fun MyApplicationTheme(
-<<<<<<< HEAD
     themeMode: ThemeMode = ThemeMode.SYSTEM,
     darkTheme: Boolean = when (themeMode) {
         ThemeMode.SYSTEM -> isSystemInDarkTheme()
         ThemeMode.LIGHT -> false
         ThemeMode.DARK -> true
     },
-=======
-    darkTheme: Boolean = isSystemInDarkTheme(),
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     MedTimeTheme(
-<<<<<<< HEAD
         themeMode = themeMode,
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
         darkTheme = darkTheme,
         dynamicColor = dynamicColor,
         content = content

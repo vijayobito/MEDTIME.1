@@ -3,7 +3,6 @@ package com.example.ui.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-<<<<<<< HEAD
 import com.example.alarm.AlarmSettingsManager
 import com.example.alarm.AlarmSoundPlayer
 import com.example.alarm.MedicineTtsEngine
@@ -16,10 +15,6 @@ import com.example.data.model.AnnouncementEntity
 import com.example.data.model.AppointmentEntity
 import com.example.data.model.AuditLogEntity
 import com.example.data.model.CaretakerAssistanceRequestEntity
-=======
-import com.example.data.model.AppointmentEntity
-import com.example.data.model.AuditLogEntity
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import com.example.data.model.CaretakerLinkEntity
 import com.example.data.model.MedicalDocumentEntity
 import com.example.data.model.MedicineEntity
@@ -27,7 +22,6 @@ import com.example.data.model.MedicineHistoryEntity
 import com.example.data.model.MedicineReminderEntity
 import com.example.data.model.MessageEntity
 import com.example.data.model.NotificationEntity
-<<<<<<< HEAD
 import com.example.data.model.PatientAddressEntity
 import com.example.data.model.UserEntity
 import com.example.data.model.WalletEntity
@@ -35,11 +29,6 @@ import com.example.data.model.WalletTransactionEntity
 import com.example.data.repository.MedTimeRepository
 import com.example.service.GeminiAiService
 import com.example.util.QrAccountPayload
-=======
-import com.example.data.model.UserEntity
-import com.example.data.repository.MedTimeRepository
-import com.example.service.GeminiAiService
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import com.example.worker.AppointmentReminderScheduler
 import com.example.worker.DailyMedicationSyncWorker
 import com.example.worker.MedicalReminderScheduler
@@ -47,10 +36,7 @@ import com.example.worker.MedicalReminderWorker
 import com.example.worker.MedicationReminderScheduler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-<<<<<<< HEAD
 import kotlinx.coroutines.flow.Flow
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -61,12 +47,9 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-<<<<<<< HEAD
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 
 data class DashboardStats(
     val totalScheduled: Int = 0,
@@ -76,7 +59,6 @@ data class DashboardStats(
     val adherencePercent: Int = 100
 )
 
-<<<<<<< HEAD
 data class PatientLoginSession(
     val id: String,
     val deviceName: String,
@@ -107,8 +89,6 @@ data class CaretakerWalletTransaction(
     val status: String = "Completed"
 )
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 @OptIn(ExperimentalCoroutinesApi::class)
 class MedTimeViewModel(application: Application) : AndroidViewModel(application) {
     val repository = MedTimeRepository(application)
@@ -119,7 +99,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
     private val _isAuthenticated = MutableStateFlow(false)
     val isAuthenticated: StateFlow<Boolean> = _isAuthenticated.asStateFlow()
 
-<<<<<<< HEAD
     // Social Login State
     private val _isSocialAuthLoading = MutableStateFlow(false)
     val isSocialAuthLoading: StateFlow<Boolean> = _isSocialAuthLoading.asStateFlow()
@@ -139,8 +118,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
     private val _profileCompletionUser = MutableStateFlow<UserEntity?>(null)
     val profileCompletionUser: StateFlow<UserEntity?> = _profileCompletionUser.asStateFlow()
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     // Current Active User
     private val _currentUserId = MutableStateFlow("patient_1")
     val currentUserId: StateFlow<String> = _currentUserId.asStateFlow()
@@ -212,13 +189,10 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
         repository.getDocuments(id)
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
-<<<<<<< HEAD
     val recycleBinDocuments: StateFlow<List<MedicalDocumentEntity>> = _currentUserId.flatMapLatest { id ->
         repository.getRecycleBinDocuments(id)
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     // Notifications
     val notifications: StateFlow<List<NotificationEntity>> = _currentUserId.flatMapLatest { id ->
         repository.getNotifications(id)
@@ -232,7 +206,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
     val auditLogs: StateFlow<List<AuditLogEntity>> = repository.getAuditLogs()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
-<<<<<<< HEAD
     // Announcements
     val announcements: StateFlow<List<AnnouncementEntity>> = repository.getAllAnnouncements()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
@@ -269,8 +242,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
     val autoCloudSync = MutableStateFlow(true)
     val requireDoctorLicenseUpload = MutableStateFlow(true)
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     // AI Assistant State
     data class ChatMessage(val text: String, val isUser: Boolean, val timestamp: Long = System.currentTimeMillis())
     private val _aiMessages = MutableStateFlow<List<ChatMessage>>(
@@ -286,7 +257,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
     private val _isAiLoading = MutableStateFlow(false)
     val isAiLoading: StateFlow<Boolean> = _isAiLoading.asStateFlow()
 
-<<<<<<< HEAD
     // Theme Mode State
     private val _themeMode = MutableStateFlow(com.example.ui.theme.ThemeMode.SYSTEM)
     val themeMode: StateFlow<com.example.ui.theme.ThemeMode> = _themeMode.asStateFlow()
@@ -766,8 +736,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
         _userFeedback.value = "Emergency contact updated to $name ($phone)."
     }
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     // Toast/Feedback state
     private val _userFeedback = MutableStateFlow<String?>(null)
     val userFeedback: StateFlow<String?> = _userFeedback.asStateFlow()
@@ -861,7 +829,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
 
     fun logout() {
         _isAuthenticated.value = false
-<<<<<<< HEAD
         _isSocialAuthLoading.value = false
         _activeSocialProvider.value = null
         _accountCollisionState.value = null
@@ -1077,11 +1044,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-=======
-        _userFeedback.value = "Signed out of MedTime."
-    }
-
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     fun requestPasswordReset(identifier: String, onResult: (Boolean, String) -> Unit = { _, _ -> }) {
         if (identifier.isBlank()) {
             val err = "Please enter your Email or Mobile Number to receive a reset code."
@@ -1117,13 +1079,10 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
         specialty: String = "",
         hospital: String = "",
         license: String = "",
-<<<<<<< HEAD
         licenseImageUrl: String = "",
         profilePhotoUrl: String = "",
         issuingCouncil: String = "State Medical Council",
         yearsExperience: Int = 5,
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
         onResult: (Boolean, String) -> Unit = { _, _ -> }
     ) {
         if (name.isBlank()) {
@@ -1144,7 +1103,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
             onResult(false, err)
             return
         }
-<<<<<<< HEAD
         if (role.equals("DOCTOR", ignoreCase = true)) {
             if (license.isBlank()) {
                 val err = "Medical License ID is required for doctor registration."
@@ -1159,8 +1117,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
                 return
             }
         }
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 
         viewModelScope.launch {
             try {
@@ -1181,7 +1137,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
                     dob = dob,
                     specialty = specialty,
                     hospital = hospital,
-<<<<<<< HEAD
                     license = license,
                     licenseImageUrl = licenseImageUrl,
                     profilePhotoUrl = profilePhotoUrl,
@@ -1195,13 +1150,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
                 } else {
                     "Account created successfully! Welcome, ${newUser.name}."
                 }
-=======
-                    license = license
-                )
-                _currentUserId.value = newUser.id
-                _isAuthenticated.value = true
-                val successMsg = "Account created successfully! Welcome, ${newUser.name}."
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                 _userFeedback.value = successMsg
                 onResult(true, successMsg)
             } catch (e: Exception) {
@@ -1212,7 +1160,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-<<<<<<< HEAD
     fun submitDoctorCredentials(
         license: String,
         specialty: String,
@@ -1266,8 +1213,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     fun updateUserProfile(updated: UserEntity) {
         viewModelScope.launch {
             repository.updateUser(updated)
@@ -1276,40 +1221,26 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
     }
 
     // ----------------------------------------------------
-<<<<<<< HEAD
     // Reminders, Alarms & Adherence
-=======
-    // Reminders & Adherence
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     // ----------------------------------------------------
     fun markReminderTaken(reminder: MedicineReminderEntity) {
         viewModelScope.launch {
             repository.markReminderTaken(reminder)
-<<<<<<< HEAD
             com.example.alarm.MedicineAlarmScheduler.cancelAlarm(getApplication(), reminder.id)
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             MedicationReminderScheduler.cancelReminder(getApplication(), reminder.id)
             _userFeedback.value = "Marked ${reminder.medicineName} as TAKEN. Adherence updated!"
         }
     }
 
-<<<<<<< HEAD
     fun snoozeReminder(reminder: MedicineReminderEntity, minutes: Int = 10) {
         viewModelScope.launch {
             repository.snoozeReminder(reminder, minutes)
             com.example.alarm.MedicineAlarmScheduler.scheduleSnoozeAlarm(getApplication(), reminder, minutes)
-=======
-    fun snoozeReminder(reminder: MedicineReminderEntity, minutes: Int = 15) {
-        viewModelScope.launch {
-            repository.snoozeReminder(reminder, minutes)
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             MedicationReminderScheduler.scheduleSnooze(getApplication(), reminder, minutes)
             _userFeedback.value = "Snoozed ${reminder.medicineName} for $minutes minutes."
         }
     }
 
-<<<<<<< HEAD
     fun skipReminder(reminder: MedicineReminderEntity, reason: String = "Patient skipped") {
         viewModelScope.launch {
             repository.skipReminder(reminder, reason)
@@ -1329,16 +1260,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
         _userFeedback.value = "Rescheduled all pending medicine alarms with exact AlarmManager."
     }
 
-=======
-    fun skipReminder(reminder: MedicineReminderEntity) {
-        viewModelScope.launch {
-            repository.skipReminder(reminder)
-            MedicationReminderScheduler.cancelReminder(getApplication(), reminder.id)
-            _userFeedback.value = "Logged ${reminder.medicineName} as SKIPPED."
-        }
-    }
-
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     // ----------------------------------------------------
     // Medicines CRUD
     // ----------------------------------------------------
@@ -1401,7 +1322,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-<<<<<<< HEAD
     fun refillMedicine(medicineId: String, amount: Int = 30) {
         viewModelScope.launch {
             val updated = repository.refillMedicine(medicineId, amount)
@@ -1548,8 +1468,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     fun deleteMedicine(med: MedicineEntity) {
         viewModelScope.launch {
             repository.deleteMedicine(med)
@@ -1741,7 +1659,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-<<<<<<< HEAD
     fun deleteCaretakerLink(linkId: String) {
         viewModelScope.launch {
             repository.deleteCaretakerLink(linkId)
@@ -1947,8 +1864,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     // ----------------------------------------------------
     // Documents
     // ----------------------------------------------------
@@ -2002,7 +1917,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
     fun deleteDocument(docId: String) {
         viewModelScope.launch {
             repository.deleteDocument(docId)
-<<<<<<< HEAD
             _userFeedback.value = "Document moved to Recycle Bin."
         }
     }
@@ -2025,9 +1939,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
         viewModelScope.launch {
             repository.emptyRecycleBin(_currentUserId.value)
             _userFeedback.value = "Recycle bin emptied."
-=======
-            _userFeedback.value = "Document deleted."
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
         }
     }
 
@@ -2040,7 +1951,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-<<<<<<< HEAD
     fun markNotificationUnread(id: String) {
         viewModelScope.launch {
             repository.markNotificationUnread(id)
@@ -2048,8 +1958,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     fun markAllNotificationsRead() {
         viewModelScope.launch {
             repository.markAllNotificationsRead(_currentUserId.value)
@@ -2057,7 +1965,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-<<<<<<< HEAD
     fun deleteNotification(id: String) {
         viewModelScope.launch {
             repository.deleteNotification(id)
@@ -2081,8 +1988,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     // ----------------------------------------------------
     // Admin Actions
     // ----------------------------------------------------
@@ -2094,7 +1999,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-<<<<<<< HEAD
     fun createAnnouncement(
         title: String,
         content: String,
@@ -2130,8 +2034,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     // ----------------------------------------------------
     // AI Assistant
     // ----------------------------------------------------
@@ -2147,7 +2049,6 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
             _isAiLoading.value = false
         }
     }
-<<<<<<< HEAD
 
     // ----------------------------------------------------
     // Caretaker Assistance System (Call & Visit Coordination)
@@ -2397,6 +2298,4 @@ class MedTimeViewModel(application: Application) : AndroidViewModel(application)
             )
         }
     }
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 }

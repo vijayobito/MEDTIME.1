@@ -39,10 +39,7 @@ import java.util.Locale
 @Composable
 fun AddMedicineDialog(
     onDismiss: () -> Unit,
-<<<<<<< HEAD
     initialScannedDetails: ScannedMedicationDetails? = null,
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     onSave: (
         name: String,
         dosage: String,
@@ -56,7 +53,6 @@ fun AddMedicineDialog(
         notes: String
     ) -> Unit
 ) {
-<<<<<<< HEAD
     var showBarcodeScanner by remember { mutableStateOf(false) }
     var wasAutoPopulated by remember { mutableStateOf(initialScannedDetails != null) }
 
@@ -71,19 +67,6 @@ fun AddMedicineDialog(
     var endDate by remember { mutableStateOf("2026-12-31") }
     var stockText by remember { mutableStateOf(initialScannedDetails?.stockCount?.toString() ?: "30") }
     var notes by remember { mutableStateOf(initialScannedDetails?.notes ?: "") }
-=======
-    var name by remember { mutableStateOf("") }
-    var dosage by remember { mutableStateOf("") }
-    var form by remember { mutableStateOf("Tablet") }
-    var instructions by remember { mutableStateOf("After food with water") }
-    var frequency by remember { mutableStateOf("Daily") }
-    var reminderTimes by remember { mutableStateOf("08:00 AM") }
-    val today = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
-    var startDate by remember { mutableStateOf(today) }
-    var endDate by remember { mutableStateOf("2026-12-31") }
-    var stockText by remember { mutableStateOf("30") }
-    var notes by remember { mutableStateOf("") }
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 
     var formExpanded by remember { mutableStateOf(false) }
     val formOptions = listOf("Tablet", "Capsule", "Syrup", "Injection", "Drops", "Inhaler")
@@ -91,7 +74,6 @@ fun AddMedicineDialog(
     var freqExpanded by remember { mutableStateOf(false) }
     val freqOptions = listOf("Daily", "Twice a day", "Three times a day", "Every 8 hours", "As needed")
 
-<<<<<<< HEAD
     if (showBarcodeScanner) {
         BarcodePillScannerDialog(
             onDismiss = { showBarcodeScanner = false },
@@ -130,12 +112,6 @@ fun AddMedicineDialog(
                     Text("Scan Bottle", fontSize = 11.sp, color = MedBluePrimary, fontWeight = FontWeight.Bold)
                 }
             }
-=======
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = {
-            Text("Add New Medicine", fontWeight = FontWeight.Bold)
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
         },
         text = {
             Column(
@@ -144,7 +120,6 @@ fun AddMedicineDialog(
                     .verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-<<<<<<< HEAD
                 if (wasAutoPopulated) {
                     Surface(
                         shape = RoundedCornerShape(8.dp),
@@ -166,8 +141,6 @@ fun AddMedicineDialog(
                     }
                 }
 
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                 OutlinedTextField(
                     value = name,
                     onValueChange = { name = it },
@@ -324,10 +297,7 @@ fun AddMedicineDialog(
 fun BookAppointmentDialog(
     doctors: List<UserEntity>,
     onDismiss: () -> Unit,
-<<<<<<< HEAD
     initialDate: String? = null,
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     onBook: (
         doctorId: String,
         doctorName: String,
@@ -343,7 +313,6 @@ fun BookAppointmentDialog(
     var doctorExpanded by remember { mutableStateOf(false) }
 
     // Date Picker state
-<<<<<<< HEAD
     val calendar = Calendar.getInstance().apply {
         if (!initialDate.isNullOrBlank()) {
             try {
@@ -363,12 +332,6 @@ fun BookAppointmentDialog(
             SimpleDateFormat("EEE, MMM d, yyyy", Locale.getDefault()).format(calendar.time)
         )
     }
-=======
-    val calendar = Calendar.getInstance().apply { add(Calendar.DAY_OF_YEAR, 1) }
-    val defaultFormattedDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(calendar.time)
-    var selectedDate by remember { mutableStateOf(defaultFormattedDate) }
-    var dateDisplayLabel by remember { mutableStateOf("Tomorrow (${SimpleDateFormat("EEE, MMM d", Locale.getDefault()).format(calendar.time)})") }
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     var showDatePickerModal by remember { mutableStateOf(false) }
 
     val datePickerState = rememberDatePickerState(
@@ -1179,19 +1142,12 @@ fun AddDocumentDialog(
 fun DocumentDetailsAndPreviewDialog(
     document: MedicalDocumentEntity,
     onDismiss: () -> Unit,
-<<<<<<< HEAD
     onToggleFavorite: (Boolean) -> Unit,
     onAcceptPrescription: (() -> Unit)? = null
 ) {
     val context = LocalContext.current
     var isGrayscaleScan by remember { mutableStateOf(false) }
     var prescriptionAdded by remember { mutableStateOf(false) }
-=======
-    onToggleFavorite: (Boolean) -> Unit
-) {
-    val context = LocalContext.current
-    var isGrayscaleScan by remember { mutableStateOf(false) }
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -1423,7 +1379,6 @@ fun DocumentDetailsAndPreviewDialog(
                         modifier = Modifier.padding(12.dp)
                     )
                 }
-<<<<<<< HEAD
 
                 if (document.type.contains("Prescription", ignoreCase = true) && onAcceptPrescription != null) {
                     Surface(
@@ -1474,8 +1429,6 @@ fun DocumentDetailsAndPreviewDialog(
                         }
                     }
                 }
-=======
->>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             }
         },
         confirmButton = {
