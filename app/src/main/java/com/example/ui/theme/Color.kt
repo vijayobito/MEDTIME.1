@@ -42,12 +42,18 @@ val MedPurpleLight = Color(0xFFF3E5F5)
 // =============================================================================
 // Neutral Surfaces, Backgrounds & Dividers (Light Theme)
 // =============================================================================
+<<<<<<< HEAD
 val MedNavy = Color(0xFF0F172A)              // Deep Navy healthcare theme
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 val MedBackground = Color(0xFFFAFAFA)        // Clean clinical off-white canvas
 val MedSurface = Color(0xFFFFFFFF)           // Pure white card surfaces
 val MedSurfaceVariant = Color(0xFFF1F5F9)    // Subtle elevation container
 val MedBorder = Color(0xFFE0E0E0)            // High-legibility subtle border
+<<<<<<< HEAD
 val MedBorderLight = Color(0xFFE2E8F0)       // Clean slate light border
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 val MedDivider = Color(0xFFEEF2F6)           // Section divider
 
 // =============================================================================

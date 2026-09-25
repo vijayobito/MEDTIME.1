@@ -1,5 +1,6 @@
 package com.example
 
+<<<<<<< HEAD
 import com.example.data.model.MedicineReminderEntity
 import com.example.data.model.UserEntity
 import com.example.ui.viewmodel.DashboardStats
@@ -12,6 +13,12 @@ import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [36])
+=======
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
+import org.junit.Test
+
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 class MedTimeLogicTest {
 
     @Test
@@ -125,6 +132,7 @@ class MedTimeLogicTest {
         )
         assertTrue("Delay for future date should be positive", doseDelay > 0)
     }
+<<<<<<< HEAD
 
     @Test
     fun testMedicationEntityCreationAndTimeSlots() {
@@ -298,4 +306,6 @@ class MedTimeLogicTest {
         val canAdd = (currentBalance + requestedTopUp) <= maxAllowedBalance
         assertEquals(false, canAdd)
     }
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 }

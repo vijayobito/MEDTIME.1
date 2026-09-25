@@ -1,9 +1,14 @@
 package com.example.ui.screens
 
+<<<<<<< HEAD
 import androidx.compose.animation.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+=======
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -11,7 +16,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+<<<<<<< HEAD
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -19,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+<<<<<<< HEAD
 import androidx.compose.ui.layout.ContentScale
 import android.content.Intent
 import android.net.Uri
@@ -32,6 +41,11 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import coil.compose.AsyncImage
 import com.example.data.model.*
+=======
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import com.example.ui.components.StatCard
 import com.example.ui.theme.*
 import com.example.ui.viewmodel.MedTimeViewModel
@@ -39,6 +53,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+<<<<<<< HEAD
 enum class AdminNavSection(val title: String, val subtitle: String) {
     DOCTOR_VERIFICATION("Doctor Verification", "License approvals & credentials review"),
     CARETAKER_ASSISTANCE("Caretaker Assistance", "Caregiver call & home visit requests"),
@@ -51,6 +66,8 @@ enum class AdminNavSection(val title: String, val subtitle: String) {
     SYSTEM_SETTINGS("System Settings", "Platform thresholds & clinical configuration")
 }
 
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AdminScreen(
@@ -60,6 +77,7 @@ fun AdminScreen(
     val allUsers by viewModel.allUsers.collectAsState()
     val doctors by viewModel.doctors.collectAsState()
     val allAppointments by viewModel.allAppointments.collectAsState()
+<<<<<<< HEAD
     val allCaretakerLinks by viewModel.allCaretakerLinks.collectAsState()
     val allAssistanceRequests by viewModel.allAssistanceRequests.collectAsState()
     val announcements by viewModel.announcements.collectAsState()
@@ -82,6 +100,12 @@ fun AdminScreen(
     val patients = remember(allUsers) { allUsers.filter { it.role == "PATIENT" } }
     val caretakers = remember(allUsers) { allUsers.filter { it.role == "CARETAKER" } }
     val pendingDoctors = remember(doctors) { doctors.filter { !it.isDoctorVerified || it.doctorVerificationStatus == "PENDING" } }
+=======
+    val auditLogs by viewModel.auditLogs.collectAsState()
+
+    var selectedTab by remember { mutableIntStateOf(0) } // 0 = Doctor Verification, 1 = User Directory, 2 = Audit Logs
+    var roleFilter by remember { mutableStateOf("ALL") }
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 
     LazyColumn(
         modifier = modifier
@@ -96,7 +120,11 @@ fun AdminScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(20.dp)),
+<<<<<<< HEAD
                 colors = CardDefaults.cardColors(containerColor = Color(0xFF0F172A))
+=======
+                colors = CardDefaults.cardColors(containerColor = Color(0xFF1E293B))
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             ) {
                 Column(
                     modifier = Modifier
@@ -108,6 +136,7 @@ fun AdminScreen(
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
+<<<<<<< HEAD
                         Column(modifier = Modifier.weight(1f)) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Box(
@@ -124,6 +153,9 @@ fun AdminScreen(
                                 )
                             }
                             Spacer(modifier = Modifier.height(4.dp))
+=======
+                        Column {
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                             Text(
                                 text = "MedTime Platform Administration",
                                 style = MaterialTheme.typography.titleLarge.copy(
@@ -133,6 +165,7 @@ fun AdminScreen(
                                 color = Color.White
                             )
                             Text(
+<<<<<<< HEAD
                                 text = "Clinical Compliance, Provider Credentialing & System Management",
                                 style = MaterialTheme.typography.bodySmall,
                                 color = Color.White.copy(alpha = 0.75f)
@@ -152,19 +185,39 @@ fun AdminScreen(
                                 tint = Color.White,
                                 modifier = Modifier.size(28.dp)
                             )
+=======
+                                text = "Clinical Compliance, User Access, and Audit Trail",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = Color.White.copy(alpha = 0.7f)
+                            )
+                        }
+                        Box(
+                            modifier = Modifier
+                                .size(40.dp)
+                                .clip(CircleShape)
+                                .background(Color.White.copy(alpha = 0.15f)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(Icons.Default.AdminPanelSettings, contentDescription = null, tint = Color.White)
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                         }
                     }
                 }
             }
         }
 
+<<<<<<< HEAD
         // Live Platform Metrics Summary
+=======
+        // Stats Overview
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
         item {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 StatCard(
+<<<<<<< HEAD
                     title = "Pending Review",
                     value = pendingDoctors.size.toString(),
                     subtitle = "Doctor licenses",
@@ -178,15 +231,37 @@ fun AdminScreen(
                     value = patients.size.toString(),
                     subtitle = "${caretakers.size} caretakers",
                     icon = Icons.Default.People,
+=======
+                    title = "Users",
+                    value = allUsers.size.toString(),
+                    subtitle = "All accounts",
+                    icon = Icons.Default.People,
+                    containerColor = MedBlueLight,
+                    contentColor = MedBlueDark,
+                    modifier = Modifier.weight(1f)
+                )
+                StatCard(
+                    title = "Doctors",
+                    value = doctors.size.toString(),
+                    subtitle = "${doctors.count { it.isDoctorVerified }} verified",
+                    icon = Icons.Default.MedicalServices,
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                     containerColor = MedSuccessLight,
                     contentColor = MedSuccess,
                     modifier = Modifier.weight(1f)
                 )
                 StatCard(
+<<<<<<< HEAD
                     title = "Broadcasts",
                     value = announcements.size.toString(),
                     subtitle = "${auditLogs.size} audit events",
                     icon = Icons.Default.Campaign,
+=======
+                    title = "Audit Logs",
+                    value = auditLogs.size.toString(),
+                    subtitle = "Security events",
+                    icon = Icons.Default.Shield,
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                     containerColor = Color(0xFFEDE7F6),
                     contentColor = Color(0xFF512DA8),
                     modifier = Modifier.weight(1f)
@@ -194,6 +269,7 @@ fun AdminScreen(
             }
         }
 
+<<<<<<< HEAD
         // 8-Section Navigation Bar (ADMIN tree)
         item {
             Card(
@@ -966,6 +1042,181 @@ fun androidx.compose.foundation.lazy.LazyListScope.AdminCaretakersSection(
                             Column {
                                 Text(caretaker.name, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleSmall)
                                 Text("${caretaker.email} • ${caretaker.phone}", style = MaterialTheme.typography.bodySmall, color = MedTextSecondary)
+=======
+        // Navigation Tabs
+        item {
+            TabRow(
+                selectedTabIndex = selectedTab,
+                containerColor = MedSurface,
+                contentColor = MedBluePrimary
+            ) {
+                Tab(
+                    selected = selectedTab == 0,
+                    onClick = { selectedTab = 0 },
+                    text = { Text("Doctor Licenses", fontWeight = FontWeight.Bold) }
+                )
+                Tab(
+                    selected = selectedTab == 1,
+                    onClick = { selectedTab = 1 },
+                    text = { Text("Users Directory", fontWeight = FontWeight.Bold) }
+                )
+                Tab(
+                    selected = selectedTab == 2,
+                    onClick = { selectedTab = 2 },
+                    text = { Text("Audit Trail", fontWeight = FontWeight.Bold) }
+                )
+            }
+        }
+
+        // Tab 0: Doctor Verification Management
+        if (selectedTab == 0) {
+            item {
+                Text(
+                    text = "Medical Practitioner Credentials Review",
+                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
+                    color = MedTextPrimary
+                )
+            }
+
+            if (doctors.isEmpty()) {
+                item {
+                    Text("No doctors registered yet.", color = MedTextSecondary)
+                }
+            } else {
+                items(doctors, key = { it.id }) { doc ->
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(16.dp))
+                            .border(1.dp, MedBorder, RoundedCornerShape(16.dp)),
+                        colors = CardDefaults.cardColors(containerColor = MedSurface)
+                    ) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp)
+                        ) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Column {
+                                    Text(doc.name, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.titleMedium)
+                                    Text("${doc.doctorSpecialty} • ${doc.doctorHospital}", style = MaterialTheme.typography.bodySmall, color = MedTextSecondary)
+                                    Text("License ID: ${doc.doctorLicense}", style = MaterialTheme.typography.bodySmall, fontWeight = FontWeight.Medium)
+                                }
+
+                                Surface(
+                                    shape = RoundedCornerShape(12.dp),
+                                    color = if (doc.isDoctorVerified) MedSuccessLight else MedWarningLight
+                                ) {
+                                    Text(
+                                        text = if (doc.isDoctorVerified) "APPROVED" else "PENDING",
+                                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                                        style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
+                                        color = if (doc.isDoctorVerified) MedSuccess else MedWarning
+                                    )
+                                }
+                            }
+
+                            Spacer(modifier = Modifier.height(12.dp))
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.End,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                OutlinedButton(
+                                    onClick = { viewModel.verifyDoctor(doc.id, false) },
+                                    modifier = Modifier.height(36.dp),
+                                    colors = ButtonDefaults.outlinedButtonColors(contentColor = MedError)
+                                ) {
+                                    Text("Revoke / Reject", fontSize = 12.sp)
+                                }
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Button(
+                                    onClick = { viewModel.verifyDoctor(doc.id, true) },
+                                    modifier = Modifier.height(36.dp),
+                                    colors = ButtonDefaults.buttonColors(containerColor = MedSuccess)
+                                ) {
+                                    Text("Approve License", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else if (selectedTab == 1) {
+            // Tab 1: User Directory
+            item {
+                LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    val roles = listOf("ALL", "PATIENT", "DOCTOR", "CARETAKER", "ADMIN")
+                    items(roles) { r ->
+                        FilterChip(
+                            selected = roleFilter == r,
+                            onClick = { roleFilter = r },
+                            label = { Text(r) }
+                        )
+                    }
+                }
+            }
+
+            val filteredUsers = if (roleFilter == "ALL") allUsers else allUsers.filter { it.role == roleFilter }
+
+            items(filteredUsers, key = { it.id }) { user ->
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(14.dp))
+                        .border(1.dp, MedBorder, RoundedCornerShape(14.dp)),
+                    colors = CardDefaults.cardColors(containerColor = MedSurface)
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(14.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(10.dp)
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .size(40.dp)
+                                    .clip(CircleShape)
+                                    .background(
+                                        when (user.role) {
+                                            "DOCTOR" -> MedSuccessLight
+                                            "CARETAKER" -> MedWarningLight
+                                            "ADMIN" -> Color(0xFFEDE7F6)
+                                            else -> MedBlueLight
+                                        }
+                                    ),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Icon(
+                                    imageVector = when (user.role) {
+                                        "DOCTOR" -> Icons.Default.MedicalServices
+                                        "CARETAKER" -> Icons.Default.Favorite
+                                        "ADMIN" -> Icons.Default.AdminPanelSettings
+                                        else -> Icons.Default.Person
+                                    },
+                                    contentDescription = null,
+                                    tint = when (user.role) {
+                                        "DOCTOR" -> MedSuccess
+                                        "CARETAKER" -> MedWarning
+                                        "ADMIN" -> Color(0xFF512DA8)
+                                        else -> MedBluePrimary
+                                    },
+                                    modifier = Modifier.size(20.dp)
+                                )
+                            }
+                            Column {
+                                Text(user.name, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.bodyMedium)
+                                Text("${user.email} • ${user.phone}", style = MaterialTheme.typography.bodySmall, color = MedTextSecondary)
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                             }
                         }
 
@@ -974,13 +1225,18 @@ fun androidx.compose.foundation.lazy.LazyListScope.AdminCaretakersSection(
                             color = MedSurfaceVariant
                         ) {
                             Text(
+<<<<<<< HEAD
                                 text = "${linksForCaretaker.size} Linked",
+=======
+                                text = user.role,
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                                 modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
                                 style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
                                 color = MedTextPrimary
                             )
                         }
                     }
+<<<<<<< HEAD
 
                     if (linksForCaretaker.isNotEmpty()) {
                         HorizontalDivider(color = MedDivider)
@@ -2361,6 +2617,55 @@ fun androidx.compose.foundation.lazy.LazyListScope.AdminCaretakerAssistanceSecti
                                     }
                                 }
                             }
+=======
+                }
+            }
+        } else {
+            // Tab 2: Audit Logs
+            item {
+                Text(
+                    text = "System Audit Trail & Security Events (${auditLogs.size})",
+                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
+                    color = MedTextPrimary
+                )
+            }
+
+            if (auditLogs.isEmpty()) {
+                item {
+                    Text("No audit logs recorded yet.", color = MedTextSecondary)
+                }
+            } else {
+                items(auditLogs, key = { it.id }) { log ->
+                    Card(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(12.dp))
+                            .border(1.dp, MedBorder, RoundedCornerShape(12.dp)),
+                        colors = CardDefaults.cardColors(containerColor = MedSurface)
+                    ) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(12.dp)
+                        ) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Text(
+                                    text = log.action,
+                                    fontWeight = FontWeight.Bold,
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MedBluePrimary
+                                )
+                                val timeStr = SimpleDateFormat("MMM dd • hh:mm:ss a", Locale.getDefault()).format(Date(log.timestamp))
+                                Text(timeStr, style = MaterialTheme.typography.labelSmall, color = MedTextSecondary)
+                            }
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Text(log.details, style = MaterialTheme.typography.bodySmall, color = MedTextPrimary)
+                            Spacer(modifier = Modifier.height(2.dp))
+                            Text("Actor: ${log.performedBy} • Target: ${log.targetResource}", style = MaterialTheme.typography.labelSmall, color = MedTextTertiary)
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                         }
                     }
                 }

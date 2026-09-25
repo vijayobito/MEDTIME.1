@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+<<<<<<< HEAD
 import com.example.data.dao.AnnouncementDao
 import com.example.data.dao.AppointmentDao
 import com.example.data.dao.AuditLogDao
@@ -12,11 +13,18 @@ import com.example.data.dao.CaretakerAssistanceDao
 import com.example.data.dao.CaretakerLinkDao
 import com.example.data.dao.MedicalDocumentDao
 import com.example.data.dao.MedicationDao
+=======
+import com.example.data.dao.AppointmentDao
+import com.example.data.dao.AuditLogDao
+import com.example.data.dao.CaretakerLinkDao
+import com.example.data.dao.MedicalDocumentDao
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import com.example.data.dao.MedicineDao
 import com.example.data.dao.MedicineHistoryDao
 import com.example.data.dao.MedicineReminderDao
 import com.example.data.dao.MessageDao
 import com.example.data.dao.NotificationDao
+<<<<<<< HEAD
 import com.example.data.dao.PatientAddressDao
 import com.example.data.dao.UserDao
 import com.example.data.dao.WalletDao
@@ -28,15 +36,26 @@ import com.example.data.model.CaretakerAssistanceRequestEntity
 import com.example.data.model.CaretakerLinkEntity
 import com.example.data.model.MedicalDocumentEntity
 import com.example.data.model.Medication
+=======
+import com.example.data.dao.UserDao
+import com.example.data.model.AppointmentEntity
+import com.example.data.model.AuditLogEntity
+import com.example.data.model.CaretakerLinkEntity
+import com.example.data.model.MedicalDocumentEntity
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import com.example.data.model.MedicineEntity
 import com.example.data.model.MedicineHistoryEntity
 import com.example.data.model.MedicineReminderEntity
 import com.example.data.model.MessageEntity
 import com.example.data.model.NotificationEntity
+<<<<<<< HEAD
 import com.example.data.model.PatientAddressEntity
 import com.example.data.model.UserEntity
 import com.example.data.model.WalletEntity
 import com.example.data.model.WalletTransactionEntity
+=======
+import com.example.data.model.UserEntity
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -48,7 +67,10 @@ import java.util.Locale
     entities = [
         UserEntity::class,
         MedicineEntity::class,
+<<<<<<< HEAD
         Medication::class,
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
         MedicineReminderEntity::class,
         MedicineHistoryEntity::class,
         AppointmentEntity::class,
@@ -56,6 +78,7 @@ import java.util.Locale
         CaretakerLinkEntity::class,
         MedicalDocumentEntity::class,
         NotificationEntity::class,
+<<<<<<< HEAD
         AuditLogEntity::class,
         AnnouncementEntity::class,
         CaretakerAssistanceRequestEntity::class,
@@ -64,12 +87,20 @@ import java.util.Locale
         PatientAddressEntity::class
     ],
     version = 13,
+=======
+        AuditLogEntity::class
+    ],
+    version = 3,
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun medicineDao(): MedicineDao
+<<<<<<< HEAD
     abstract fun medicationDao(): MedicationDao
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     abstract fun reminderDao(): MedicineReminderDao
     abstract fun historyDao(): MedicineHistoryDao
     abstract fun appointmentDao(): AppointmentDao
@@ -78,11 +109,14 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun documentDao(): MedicalDocumentDao
     abstract fun notificationDao(): NotificationDao
     abstract fun auditLogDao(): AuditLogDao
+<<<<<<< HEAD
     abstract fun announcementDao(): AnnouncementDao
     abstract fun caretakerAssistanceDao(): CaretakerAssistanceDao
     abstract fun walletDao(): WalletDao
     abstract fun walletTransactionDao(): WalletTransactionDao
     abstract fun patientAddressDao(): PatientAddressDao
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 
     companion object {
         @Volatile
@@ -160,6 +194,7 @@ abstract class AppDatabase : RoomDatabase() {
                 doctorBio = "Specialist in diabetes management, endocrine metabolic disorders, and thyroid therapy."
             )
 
+<<<<<<< HEAD
             val doctorPending = UserEntity(
                 id = "doctor_pending",
                 name = "Dr. Marcus Thorne, MD",
@@ -178,6 +213,8 @@ abstract class AppDatabase : RoomDatabase() {
                 doctorBio = "Clinical neurologist with expertise in cognitive wellness and neurovascular therapy."
             )
 
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             val caretaker = UserEntity(
                 id = "caretaker_1",
                 name = "Emily Davis",
@@ -197,7 +234,10 @@ abstract class AppDatabase : RoomDatabase() {
             db.userDao().insertUser(patient)
             db.userDao().insertUser(doctor1)
             db.userDao().insertUser(doctor2)
+<<<<<<< HEAD
             db.userDao().insertUser(doctorPending)
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             db.userDao().insertUser(caretaker)
             db.userDao().insertUser(admin)
 
@@ -560,6 +600,7 @@ abstract class AppDatabase : RoomDatabase() {
                 id = "notif_1",
                 userId = "patient_1",
                 title = "Appointment Confirmed",
+<<<<<<< HEAD
                 message = "Dr. Sarah Mitchell accepted your appointment for tomorrow at 10:30 AM at St. Jude Heart & Vascular Hospital.",
                 type = "APPOINTMENT",
                 isRead = false,
@@ -568,6 +609,12 @@ abstract class AppDatabase : RoomDatabase() {
                 recipientName = "Vijay Kumar",
                 deliveryChannels = "PUSH,EMAIL",
                 severity = "NORMAL"
+=======
+                message = "Dr. Sarah Mitchell accepted your appointment for tomorrow at 10:30 AM.",
+                type = "APPOINTMENT",
+                isRead = false,
+                timestamp = System.currentTimeMillis() - 7200000
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             )
 
             val notif2 = NotificationEntity(
@@ -577,16 +624,21 @@ abstract class AppDatabase : RoomDatabase() {
                 message = "Great job! Lisinopril & Atorvastatin logged. Adherence is at 88%.",
                 type = "MEDICINE",
                 isRead = false,
+<<<<<<< HEAD
                 timestamp = System.currentTimeMillis() - 3600000,
                 recipientRole = "PATIENT",
                 recipientName = "Vijay Kumar",
                 deliveryChannels = "PUSH",
                 severity = "NORMAL"
+=======
+                timestamp = System.currentTimeMillis() - 3600000
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             )
 
             val notif3 = NotificationEntity(
                 id = "notif_3",
                 userId = "patient_1",
+<<<<<<< HEAD
                 title = "Caretaker Connected & Authorized",
                 message = "Emily Davis has been linked as your authorized healthcare caretaker.",
                 type = "CARETAKER",
@@ -640,11 +692,19 @@ abstract class AppDatabase : RoomDatabase() {
                 recipientName = "Sarah Doe (+1 555-987-6543) & 911 Dispatch",
                 deliveryChannels = "PHONE_CALL,SMS",
                 severity = "CRITICAL"
+=======
+                title = "Caretaker Connected",
+                message = "Emily Davis has been linked as your authorized healthcare caretaker.",
+                type = "CARETAKER",
+                isRead = true,
+                timestamp = System.currentTimeMillis() - 86400000
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             )
 
             db.notificationDao().insertNotification(notif1)
             db.notificationDao().insertNotification(notif2)
             db.notificationDao().insertNotification(notif3)
+<<<<<<< HEAD
             db.notificationDao().insertNotification(notif4)
             db.notificationDao().insertNotification(notif5)
             db.notificationDao().insertNotification(notif6)
@@ -797,6 +857,10 @@ abstract class AppDatabase : RoomDatabase() {
             db.announcementDao().insertAnnouncement(ann3)
 
             // 11. Seed Audit Log
+=======
+
+            // 10. Seed Audit Log
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             db.auditLogDao().insertLog(
                 AuditLogEntity(
                     id = "audit_1",
@@ -807,6 +871,7 @@ abstract class AppDatabase : RoomDatabase() {
                     timestamp = System.currentTimeMillis()
                 )
             )
+<<<<<<< HEAD
 
             // 12. Seed Caretaker Assistance Requests (Call & Visit)
             val reqCall = CaretakerAssistanceRequestEntity(
@@ -1012,6 +1077,8 @@ abstract class AppDatabase : RoomDatabase() {
             )
 
             db.patientAddressDao().insertAddresses(listOf(addr1, addr2, addr3))
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
         }
     }
 }

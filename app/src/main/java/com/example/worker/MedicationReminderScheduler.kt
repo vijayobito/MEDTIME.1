@@ -22,9 +22,12 @@ object MedicationReminderScheduler {
      */
     fun scheduleReminder(context: Context, reminder: MedicineReminderEntity) {
         try {
+<<<<<<< HEAD
             // 1. Schedule Native Android Exact Alarm
             com.example.alarm.MedicineAlarmScheduler.scheduleExactAlarm(context, reminder)
 
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             val delayMillis = calculateDelayMillis(reminder.scheduledDate, reminder.scheduledTime)
 
             val inputData = workDataOf(
@@ -68,7 +71,10 @@ object MedicationReminderScheduler {
             }
             // Ensure background periodic sync is also active
             DailyMedicationSyncWorker.enqueuePeriodicSync(context)
+<<<<<<< HEAD
             SupabaseSyncWorker.enqueuePeriodicSync(context)
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
         } catch (e: Throwable) {
             Log.e(TAG, "Failed to schedule reminders list: ${e.message}", e)
         }
@@ -105,11 +111,16 @@ object MedicationReminderScheduler {
     /**
      * Schedules a snoozed reminder for N minutes in the future.
      */
+<<<<<<< HEAD
     fun scheduleSnooze(context: Context, reminder: MedicineReminderEntity, snoozeMinutes: Int = 10) {
         try {
             // Schedule real Android exact alarm for snooze
             com.example.alarm.MedicineAlarmScheduler.scheduleSnoozeAlarm(context, reminder, snoozeMinutes)
 
+=======
+    fun scheduleSnooze(context: Context, reminder: MedicineReminderEntity, snoozeMinutes: Int = 15) {
+        try {
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             val delayMillis = TimeUnit.MINUTES.toMillis(snoozeMinutes.toLong())
 
             val inputData = workDataOf(
@@ -147,9 +158,14 @@ object MedicationReminderScheduler {
      */
     fun cancelReminder(context: Context, reminderId: String) {
         try {
+<<<<<<< HEAD
             com.example.alarm.MedicineAlarmScheduler.cancelAlarm(context, reminderId)
             WorkManager.getInstance(context).cancelUniqueWork("reminder_$reminderId")
             Log.d(TAG, "Cancelled WorkManager & Exact Alarm for reminder: reminder_$reminderId")
+=======
+            WorkManager.getInstance(context).cancelUniqueWork("reminder_$reminderId")
+            Log.d(TAG, "Cancelled WorkManager task for reminder: reminder_$reminderId")
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
         } catch (e: Throwable) {
             Log.e(TAG, "Failed to cancel reminder: ${e.message}", e)
         }

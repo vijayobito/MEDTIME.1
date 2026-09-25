@@ -1,5 +1,6 @@
 package com.example.ui.screens
 
+<<<<<<< HEAD
 import androidx.compose.animation.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -13,12 +14,23 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
+=======
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+<<<<<<< HEAD
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
@@ -36,6 +48,16 @@ import com.example.ui.viewmodel.MedTimeViewModel
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+=======
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.data.model.AppointmentEntity
+import com.example.ui.components.AppointmentCard
+import com.example.ui.components.StatCard
+import com.example.ui.theme.*
+import com.example.ui.viewmodel.MedTimeViewModel
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 
 @Composable
 fun DoctorScreen(
@@ -43,6 +65,7 @@ fun DoctorScreen(
     modifier: Modifier = Modifier
 ) {
     val currentUser by viewModel.currentUser.collectAsState()
+<<<<<<< HEAD
     val isVerified = currentUser?.isDoctorVerified == true || currentUser?.doctorVerificationStatus == "APPROVED"
 
     if (!isVerified) {
@@ -736,10 +759,13 @@ fun DoctorVerifiedDashboardView(
     viewModel: MedTimeViewModel,
     modifier: Modifier = Modifier
 ) {
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     val appointments by viewModel.doctorAppointments.collectAsState()
 
     var appointmentNotesDialog by remember { mutableStateOf<AppointmentEntity?>(null) }
     var clinicalNotesText by remember { mutableStateOf("") }
+<<<<<<< HEAD
     var showQrCodeDialog by remember { mutableStateOf(false) }
     var showQrScannerDialog by remember { mutableStateOf(false) }
     var showIssuePrescriptionDialog by remember { mutableStateOf(false) }
@@ -791,6 +817,8 @@ fun DoctorVerifiedDashboardView(
             }
         )
     }
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 
     if (appointmentNotesDialog != null) {
         val appt = appointmentNotesDialog!!
@@ -808,6 +836,7 @@ fun DoctorVerifiedDashboardView(
                         modifier = Modifier.fillMaxWidth(),
                         minLines = 3
                     )
+<<<<<<< HEAD
                     OutlinedButton(
                         onClick = {
                             targetPatientForPrescription = Pair(appt.patientId, appt.patientName)
@@ -819,6 +848,8 @@ fun DoctorVerifiedDashboardView(
                         Spacer(modifier = Modifier.width(6.dp))
                         Text("Issue Digital Prescription for ${appt.patientName}", fontSize = 12.sp, color = MedBluePrimary)
                     }
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                 }
             },
             confirmButton = {
@@ -844,18 +875,32 @@ fun DoctorVerifiedDashboardView(
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
+<<<<<<< HEAD
             .background(MedBackground)
             .testTag("doctor_verified_dashboard"),
+=======
+            .background(MedBackground),
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         // Doctor Verification Profile Banner
         item {
+<<<<<<< HEAD
+=======
+            val isVerified = currentUser?.isDoctorVerified == true
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(20.dp)),
+<<<<<<< HEAD
                 colors = CardDefaults.cardColors(containerColor = MedBluePrimary)
+=======
+                colors = CardDefaults.cardColors(
+                    containerColor = if (isVerified) MedBluePrimary else Color(0xFFE65100)
+                )
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             ) {
                 Column(
                     modifier = Modifier
@@ -867,6 +912,7 @@ fun DoctorVerifiedDashboardView(
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
+<<<<<<< HEAD
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.spacedBy(12.dp)
@@ -906,6 +952,27 @@ fun DoctorVerifiedDashboardView(
                                     color = Color.White.copy(alpha = 0.9f)
                                 )
                             }
+=======
+                        Column {
+                            Text(
+                                text = "Doctor Clinical Portal",
+                                style = MaterialTheme.typography.labelMedium,
+                                color = Color.White.copy(alpha = 0.8f)
+                            )
+                            Text(
+                                text = currentUser?.name ?: "Dr. Specialist",
+                                style = MaterialTheme.typography.titleLarge.copy(
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 22.sp
+                                ),
+                                color = Color.White
+                            )
+                            Text(
+                                text = "${currentUser?.doctorSpecialty} • ${currentUser?.doctorHospital}",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = Color.White.copy(alpha = 0.9f)
+                            )
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                         }
 
                         Surface(
@@ -918,13 +985,21 @@ fun DoctorVerifiedDashboardView(
                                 horizontalArrangement = Arrangement.spacedBy(4.dp)
                             ) {
                                 Icon(
+<<<<<<< HEAD
                                     imageVector = Icons.Default.Verified,
+=======
+                                    imageVector = if (isVerified) Icons.Default.Verified else Icons.Default.Warning,
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                                     contentDescription = null,
                                     tint = Color.White,
                                     modifier = Modifier.size(16.dp)
                                 )
                                 Text(
+<<<<<<< HEAD
                                     text = "Verified MD",
+=======
+                                    text = if (isVerified) "Verified MD" else "Pending Review",
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                                     color = Color.White,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 12.sp
@@ -935,7 +1010,11 @@ fun DoctorVerifiedDashboardView(
 
                     Spacer(modifier = Modifier.height(10.dp))
                     Text(
+<<<<<<< HEAD
                         text = "Medical License: ${doctor?.doctorLicense ?: "LIC-348912"}",
+=======
+                        text = "Medical License: ${currentUser?.doctorLicense ?: "LIC-348912"}",
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                         style = MaterialTheme.typography.labelSmall,
                         color = Color.White.copy(alpha = 0.8f)
                     )
@@ -943,6 +1022,7 @@ fun DoctorVerifiedDashboardView(
             }
         }
 
+<<<<<<< HEAD
         // Doctor QR Fast Connect & Patient Scanner Hub
         item {
             Card(
@@ -1074,6 +1154,8 @@ fun DoctorVerifiedDashboardView(
             }
         }
 
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
         // Stats Row
         item {
             val pendingCount = appointments.count { it.status == "PENDING" }
@@ -1165,6 +1247,7 @@ fun DoctorVerifiedDashboardView(
         }
     }
 }
+<<<<<<< HEAD
 
 /**
  * Dialog for doctors to compose and issue a digital prescription for a patient.
@@ -1434,3 +1517,5 @@ fun IssuePrescriptionDialog(
         }
     )
 }
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465

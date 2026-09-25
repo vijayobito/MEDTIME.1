@@ -37,6 +37,7 @@ fun DocumentsScreen(
 ) {
     val context = LocalContext.current
     val documents by viewModel.documents.collectAsState()
+<<<<<<< HEAD
     val recycleBinDocuments by viewModel.recycleBinDocuments.collectAsState()
 
     var searchQuery by remember { mutableStateOf("") }
@@ -46,6 +47,14 @@ fun DocumentsScreen(
     var docToDelete by remember { mutableStateOf<MedicalDocumentEntity?>(null) }
     var docToPermanentlyDelete by remember { mutableStateOf<MedicalDocumentEntity?>(null) }
     var showEmptyRecycleBinDialog by remember { mutableStateOf(false) }
+=======
+
+    var searchQuery by remember { mutableStateOf("") }
+    var selectedFormatFilter by remember { mutableStateOf("ALL") } // "ALL", "PDF", "IMAGE", "STARRED"
+    var selectedCategory by remember { mutableStateOf("All") }
+    var showAddDialog by remember { mutableStateOf(false) }
+    var docToDelete by remember { mutableStateOf<MedicalDocumentEntity?>(null) }
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     var docToView by remember { mutableStateOf<MedicalDocumentEntity?>(null) }
 
     val categories = listOf("All", "Prescription", "Lab Report", "Scan", "Doctor Notes", "Discharge Summary", "Insurance")
@@ -79,17 +88,28 @@ fun DocumentsScreen(
         val doc = docToDelete!!
         AlertDialog(
             onDismissRequest = { docToDelete = null },
+<<<<<<< HEAD
             title = { Text("Move to Recycle Bin?") },
             text = { Text("Move '${doc.title}' to the Recycle Bin? You can restore it anytime or delete it permanently later.") },
+=======
+            title = { Text("Delete Document?") },
+            text = { Text("Are you sure you want to delete '${doc.title}' (${doc.fileName})? This cannot be undone.") },
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             confirmButton = {
                 Button(
                     onClick = {
                         viewModel.deleteDocument(doc.id)
                         docToDelete = null
                     },
+<<<<<<< HEAD
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE65100))
                 ) {
                     Text("Move to Bin")
+=======
+                    colors = ButtonDefaults.buttonColors(containerColor = MedError)
+                ) {
+                    Text("Delete")
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                 }
             },
             dismissButton = {
@@ -100,6 +120,7 @@ fun DocumentsScreen(
         )
     }
 
+<<<<<<< HEAD
     if (docToPermanentlyDelete != null) {
         val doc = docToPermanentlyDelete!!
         AlertDialog(
@@ -149,6 +170,8 @@ fun DocumentsScreen(
         )
     }
 
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     if (docToView != null) {
         DocumentDetailsAndPreviewDialog(
             document = docToView!!,
@@ -156,9 +179,12 @@ fun DocumentsScreen(
             onToggleFavorite = { fav ->
                 viewModel.toggleDocumentFavorite(docToView!!.id, fav)
                 docToView = docToView!!.copy(isFavorite = fav)
+<<<<<<< HEAD
             },
             onAcceptPrescription = {
                 viewModel.acceptPrescriptionIntoReminders(docToView!!.id)
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             }
         )
     }
@@ -215,6 +241,7 @@ fun DocumentsScreen(
 
                     Spacer(modifier = Modifier.height(10.dp))
 
+<<<<<<< HEAD
                     // Format Filter Chips: All, PDFs, Images/Scans, Starred, Recycle Bin
                     LazyRow(
                         modifier = Modifier.fillMaxWidth(),
@@ -298,11 +325,54 @@ fun DocumentsScreen(
                                 selectedContainerColor = MedBluePrimary,
                                 selectedLabelColor = Color.White
                             )
+=======
+                    // Format Filter Chips: All, PDFs, Images/Scans, Starred
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        FilterChip(
+                            selected = selectedFormatFilter == "ALL",
+                            onClick = { selectedFormatFilter = "ALL" },
+                            label = { Text("All (${documents.size})", fontSize = 11.sp, fontWeight = if (selectedFormatFilter == "ALL") FontWeight.Bold else FontWeight.Normal) },
+                            modifier = Modifier.weight(1f)
+                        )
+
+                        FilterChip(
+                            selected = selectedFormatFilter == "PDF",
+                            onClick = { selectedFormatFilter = "PDF" },
+                            label = { Text("PDFs (${documents.count { it.fileFormat.equals("PDF", ignoreCase = true) }})", fontSize = 11.sp, fontWeight = if (selectedFormatFilter == "PDF") FontWeight.Bold else FontWeight.Normal) },
+                            leadingIcon = {
+                                Icon(Icons.Default.PictureAsPdf, contentDescription = null, tint = Color(0xFFD32F2F), modifier = Modifier.size(14.dp))
+                            },
+                            modifier = Modifier.weight(1.1f)
+                        )
+
+                        FilterChip(
+                            selected = selectedFormatFilter == "IMAGE",
+                            onClick = { selectedFormatFilter = "IMAGE" },
+                            label = { Text("Scans (${documents.count { it.fileFormat.equals("IMAGE", ignoreCase = true) }})", fontSize = 11.sp, fontWeight = if (selectedFormatFilter == "IMAGE") FontWeight.Bold else FontWeight.Normal) },
+                            leadingIcon = {
+                                Icon(Icons.Default.PermMedia, contentDescription = null, tint = Color(0xFF673AB7), modifier = Modifier.size(14.dp))
+                            },
+                            modifier = Modifier.weight(1.1f)
+                        )
+
+                        FilterChip(
+                            selected = selectedFormatFilter == "STARRED",
+                            onClick = { selectedFormatFilter = "STARRED" },
+                            label = { Text("Starred (${documents.count { it.isFavorite }})", fontSize = 11.sp, fontWeight = if (selectedFormatFilter == "STARRED") FontWeight.Bold else FontWeight.Normal) },
+                            leadingIcon = {
+                                Icon(Icons.Default.Star, contentDescription = null, tint = Color(0xFFFFB300), modifier = Modifier.size(14.dp))
+                            },
+                            modifier = Modifier.weight(1.1f)
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                         )
                     }
                 }
             }
 
+<<<<<<< HEAD
             // 3. Storage & Document Metrics Strip or Recycle Bin Header
             if (selectedFormatFilter == "RECYCLE_BIN") {
                 Surface(
@@ -384,19 +454,78 @@ fun DocumentsScreen(
                             }
                         )
                     }
+=======
+            // 2. Category Filter Row
+            LazyRow(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(MedSurface)
+                    .padding(horizontal = 16.dp, vertical = 8.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                items(categories) { cat ->
+                    val isSelected = selectedCategory == cat
+                    FilterChip(
+                        selected = isSelected,
+                        onClick = { selectedCategory = cat },
+                        label = { Text(cat, fontSize = 11.sp, fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal) },
+                        colors = FilterChipDefaults.filterChipColors(
+                            selectedContainerColor = MedBluePrimary,
+                            selectedLabelColor = Color.White
+                        )
+                    )
+                }
+            }
+
+            // 3. Storage & Document Metrics Strip
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 8.dp),
+                shape = RoundedCornerShape(12.dp),
+                color = MedSurface,
+                border = androidx.compose.foundation.BorderStroke(1.dp, MedBorder)
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 14.dp, vertical = 10.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    MetricItem(label = "Total Records", value = "${documents.size}")
+                    MetricItem(label = "PDF Files", value = "${documents.count { it.fileFormat.equals("PDF", ignoreCase = true) }}")
+                    MetricItem(label = "Medical Scans", value = "${documents.count { it.fileFormat.equals("IMAGE", ignoreCase = true) }}")
+                    MetricItem(
+                        label = "Storage Used",
+                        value = run {
+                            val totalBytes = documents.sumOf { it.fileSizeBytes.takeIf { s -> s > 0 } ?: 1048576L }
+                            val mb = totalBytes.toDouble() / (1024.0 * 1024.0)
+                            String.format("%.1f MB", mb)
+                        }
+                    )
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                 }
             }
 
             // Filter computation
+<<<<<<< HEAD
             val activeList = if (selectedFormatFilter == "RECYCLE_BIN") recycleBinDocuments else documents
             val filtered = activeList.filter { doc ->
+=======
+            val filtered = documents.filter { doc ->
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                 val matchesFormat = when (selectedFormatFilter) {
                     "PDF" -> doc.fileFormat.equals("PDF", ignoreCase = true)
                     "IMAGE" -> doc.fileFormat.equals("IMAGE", ignoreCase = true)
                     "STARRED" -> doc.isFavorite
                     else -> true
                 }
+<<<<<<< HEAD
                 val matchesCategory = selectedFormatFilter == "RECYCLE_BIN" || selectedCategory == "All" || doc.type.equals(selectedCategory, ignoreCase = true)
+=======
+                val matchesCategory = selectedCategory == "All" || doc.type.equals(selectedCategory, ignoreCase = true)
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                 val matchesSearch = searchQuery.isBlank() ||
                         doc.title.contains(searchQuery, ignoreCase = true) ||
                         doc.doctorOrClinic.contains(searchQuery, ignoreCase = true) ||
@@ -415,6 +544,7 @@ fun DocumentsScreen(
                     contentAlignment = Alignment.Center
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
+<<<<<<< HEAD
                         Icon(
                             imageVector = if (selectedFormatFilter == "RECYCLE_BIN") Icons.Default.DeleteOutline else Icons.Default.FolderOpen,
                             contentDescription = null,
@@ -424,10 +554,17 @@ fun DocumentsScreen(
                         Spacer(modifier = Modifier.height(12.dp))
                         Text(
                             text = if (selectedFormatFilter == "RECYCLE_BIN") "Recycle Bin is Empty" else (if (searchQuery.isNotBlank()) "No Matching Documents" else "No Documents Found"),
+=======
+                        Icon(Icons.Default.FolderOpen, contentDescription = null, tint = MedTextTertiary, modifier = Modifier.size(56.dp))
+                        Spacer(modifier = Modifier.height(12.dp))
+                        Text(
+                            text = if (searchQuery.isNotBlank()) "No Matching Documents" else "No Documents Found",
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
+<<<<<<< HEAD
                             text = if (selectedFormatFilter == "RECYCLE_BIN") "Any medical files you delete will appear here safely for recovery." else (if (searchQuery.isNotBlank()) "Try refining your query or clear format filters." else "Upload your clinical records, laboratory PDFs, or imaging scans to keep them organized."),
                             style = MaterialTheme.typography.bodySmall,
                             color = MedTextSecondary
@@ -443,6 +580,21 @@ fun DocumentsScreen(
                                 Spacer(modifier = Modifier.width(6.dp))
                                 Text("Upload Medical Record")
                             }
+=======
+                            text = if (searchQuery.isNotBlank()) "Try refining your query or clear format filters." else "Upload your clinical records, laboratory PDFs, or imaging scans to keep them organized.",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MedTextSecondary
+                        )
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Button(
+                            onClick = { showAddDialog = true },
+                            colors = ButtonDefaults.buttonColors(containerColor = MedBluePrimary),
+                            shape = RoundedCornerShape(10.dp)
+                        ) {
+                            Icon(Icons.Default.UploadFile, contentDescription = null, modifier = Modifier.size(16.dp))
+                            Spacer(modifier = Modifier.width(6.dp))
+                            Text("Upload Medical Record")
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                         }
                     }
                 }
@@ -454,7 +606,10 @@ fun DocumentsScreen(
                 ) {
                     items(filtered, key = { it.id }) { doc ->
                         val isPdf = doc.fileFormat.equals("PDF", ignoreCase = true)
+<<<<<<< HEAD
                         val isRecycled = selectedFormatFilter == "RECYCLE_BIN"
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                         Card(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -605,6 +760,7 @@ fun DocumentsScreen(
                                     horizontalArrangement = Arrangement.SpaceBetween,
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
+<<<<<<< HEAD
                                     if (isRecycled) {
                                         Text(
                                             text = "In Recycle Bin",
@@ -696,6 +852,50 @@ fun DocumentsScreen(
                                             ) {
                                                 Icon(Icons.Outlined.Delete, contentDescription = "Move to Recycle Bin", tint = MedError, modifier = Modifier.size(16.dp))
                                             }
+=======
+                                    Text(
+                                        text = "Status: ${doc.uploadStatus}",
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = MedSuccess,
+                                        fontWeight = FontWeight.SemiBold
+                                    )
+
+                                    Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                                        OutlinedButton(
+                                            onClick = { docToView = doc },
+                                            modifier = Modifier.height(34.dp),
+                                            shape = RoundedCornerShape(8.dp),
+                                            contentPadding = PaddingValues(horizontal = 10.dp)
+                                        ) {
+                                            Icon(Icons.Default.Visibility, contentDescription = null, modifier = Modifier.size(14.dp))
+                                            Spacer(modifier = Modifier.width(4.dp))
+                                            Text("Inspect & Preview", fontSize = 11.sp)
+                                        }
+
+                                        IconButton(
+                                            onClick = {
+                                                val sendIntent = Intent(Intent.ACTION_SEND).apply {
+                                                    type = doc.mimeType
+                                                    putExtra(Intent.EXTRA_SUBJECT, "Medical Record: ${doc.title}")
+                                                    putExtra(
+                                                        Intent.EXTRA_TEXT,
+                                                        "Medical Record: ${doc.title}\nFacility: ${doc.doctorOrClinic}\nDate: ${doc.dateAdded}\nSummary: ${doc.notes}"
+                                                    )
+                                                }
+                                                val shareIntent = Intent.createChooser(sendIntent, "Share Document")
+                                                context.startActivity(shareIntent)
+                                            },
+                                            modifier = Modifier.size(34.dp)
+                                        ) {
+                                            Icon(Icons.Default.Share, contentDescription = "Share", tint = MedBluePrimary, modifier = Modifier.size(16.dp))
+                                        }
+
+                                        IconButton(
+                                            onClick = { docToDelete = doc },
+                                            modifier = Modifier.size(34.dp)
+                                        ) {
+                                            Icon(Icons.Outlined.Delete, contentDescription = "Delete", tint = MedError, modifier = Modifier.size(16.dp))
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                                         }
                                     }
                                 }

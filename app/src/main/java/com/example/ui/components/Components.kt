@@ -270,6 +270,7 @@ fun MedicineCard(
     medicine: MedicineEntity,
     onEdit: () -> Unit,
     onDelete: () -> Unit,
+<<<<<<< HEAD
     onRefill: (amount: Int) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
@@ -278,15 +279,23 @@ fun MedicineCard(
     val daysRemaining = medicine.getEstimatedDaysRemaining()
     val dailyDoses = medicine.getDailyDoseCount()
 
+=======
+    modifier: Modifier = Modifier
+) {
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     Card(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(16.dp))
+<<<<<<< HEAD
             .border(
                 1.dp,
                 if (isLow) MedWarning.copy(alpha = 0.6f) else MedBorder,
                 RoundedCornerShape(16.dp)
             ),
+=======
+            .border(1.dp, MedBorder, RoundedCornerShape(16.dp)),
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
         colors = CardDefaults.cardColors(containerColor = MedSurface),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
@@ -369,16 +378,25 @@ fun MedicineCard(
                     Text(medicine.reminderTimes, style = MaterialTheme.typography.bodySmall, fontWeight = FontWeight.Medium)
                 }
                 Column(horizontalAlignment = Alignment.End) {
+<<<<<<< HEAD
                     Text("Stock Remaining", style = MaterialTheme.typography.labelSmall, color = MedTextSecondary)
                     Text(
                         text = "${medicine.stockQuantity} doses",
                         style = MaterialTheme.typography.bodySmall.copy(
                             color = if (isLow) MedError else MedSuccess,
+=======
+                    Text("Stock", style = MaterialTheme.typography.labelSmall, color = MedTextSecondary)
+                    Text(
+                        text = "${medicine.stockQuantity} doses",
+                        style = MaterialTheme.typography.bodySmall.copy(
+                            color = if (medicine.stockQuantity <= 5) MedError else MedSuccess,
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                             fontWeight = FontWeight.Bold
                         )
                     )
                 }
             }
+<<<<<<< HEAD
 
             if (isLow) {
                 Spacer(modifier = Modifier.height(12.dp))
@@ -426,6 +444,8 @@ fun MedicineCard(
                     }
                 }
             }
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
         }
     }
 }
@@ -440,7 +460,10 @@ fun AppointmentCard(
     onCancel: () -> Unit = {},
     onToggleReminder: () -> Unit = {},
     onChat: () -> Unit = {},
+<<<<<<< HEAD
     onViewRoute: () -> Unit = {},
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     modifier: Modifier = Modifier
 ) {
     val statusColor = when (appointment.status) {
@@ -726,6 +749,7 @@ fun AppointmentCard(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
+<<<<<<< HEAD
                     OutlinedButton(
                         onClick = onViewRoute,
                         modifier = Modifier.height(36.dp).testTag("view_appointment_route_${appointment.id}"),
@@ -772,6 +796,35 @@ fun AppointmentCard(
                             Spacer(modifier = Modifier.width(4.dp))
                             Text("Cancel", fontSize = 11.sp)
                         }
+=======
+                    TextButton(
+                        onClick = onChat,
+                        modifier = Modifier.height(36.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Chat,
+                            contentDescription = null,
+                            tint = MedBluePrimary,
+                            modifier = Modifier.size(16.dp)
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text("Chat Doctor", fontSize = 12.sp, color = MedBluePrimary)
+                    }
+
+                    OutlinedButton(
+                        onClick = onCancel,
+                        modifier = Modifier.height(36.dp),
+                        colors = ButtonDefaults.outlinedButtonColors(contentColor = MedError)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Close,
+                            contentDescription = null,
+                            modifier = Modifier.size(14.dp),
+                            tint = MedError
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text("Cancel", fontSize = 12.sp)
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                     }
                 }
             }

@@ -1,5 +1,6 @@
 package com.example.ui.screens
 
+<<<<<<< HEAD
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
@@ -13,6 +14,13 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+=======
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -26,6 +34,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+<<<<<<< HEAD
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
@@ -36,11 +45,19 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+=======
+import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.testTag
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+<<<<<<< HEAD
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -49,6 +66,10 @@ import com.example.R
 import com.example.auth.SocialAuthProvider
 import com.example.auth.SocialAuthResult
 import com.example.data.model.UserEntity
+=======
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import com.example.ui.theme.*
 import com.example.ui.viewmodel.MedTimeViewModel
 
@@ -62,12 +83,15 @@ fun AuthScreen(
     var isLoginMode by remember { mutableStateOf(true) }
     val focusManager = LocalFocusManager.current
 
+<<<<<<< HEAD
     val isSocialAuthLoading by viewModel.isSocialAuthLoading.collectAsState()
     val activeSocialProvider by viewModel.activeSocialProvider.collectAsState()
     val accountCollisionPair by viewModel.accountCollisionState.collectAsState()
     val oauthConfigMissing by viewModel.oauthConfigState.collectAsState()
     val profileCompletionUser by viewModel.profileCompletionUser.collectAsState()
 
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     val defaultEmail = when (selectedRole.uppercase()) {
         "DOCTOR" -> "doctor@medtime.com"
         "CARETAKER" -> "caretaker@medtime.com"
@@ -94,10 +118,13 @@ fun AuthScreen(
     var regSpecialty by remember { mutableStateOf("") }
     var regHospital by remember { mutableStateOf("") }
     var regLicense by remember { mutableStateOf("") }
+<<<<<<< HEAD
     var regLicenseImageUrl by remember { mutableStateOf("https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600") }
     var regProfilePhotoUrl by remember { mutableStateOf("https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400") }
     var regIssuingCouncil by remember { mutableStateOf("National Medical Commission") }
     var regYearsExperience by remember { mutableIntStateOf(5) }
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 
     var errorMessage by remember { mutableStateOf<String?>(null) }
     var successMessage by remember { mutableStateOf<String?>(null) }
@@ -545,20 +572,30 @@ fun AuthScreen(
                                 Row(
                                     modifier = Modifier
                                         .fillMaxWidth()
+<<<<<<< HEAD
                                         .padding(top = 4.dp, bottom = 12.dp),
+=======
+                                        .padding(vertical = 4.dp),
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     HorizontalDivider(modifier = Modifier.weight(1f), color = MedBorder)
                                     Text(
                                         text = "   OR   ",
+<<<<<<< HEAD
                                         style = MaterialTheme.typography.labelSmall.copy(
                                             fontWeight = FontWeight.Bold,
                                             color = MedTextSecondary
                                         )
+=======
+                                        style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
+                                        color = MedTextSecondary
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                                     )
                                     HorizontalDivider(modifier = Modifier.weight(1f), color = MedBorder)
                                 }
 
+<<<<<<< HEAD
                                 // Social Login Logos Row: [ Google ] [ Facebook ] [ Apple ]
                                 Row(
                                     modifier = Modifier
@@ -596,6 +633,86 @@ fun AuthScreen(
                                         isAnyLoading = isSocialAuthLoading,
                                         tint = Color.Black,
                                         onClick = { viewModel.startSocialLogin(SocialAuthProvider.APPLE) }
+=======
+                                // Continue with Google
+                                OutlinedButton(
+                                    onClick = {
+                                        viewModel.quickLoginAsRole(selectedRole)
+                                    },
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(46.dp)
+                                        .testTag("btn_social_google"),
+                                    shape = RoundedCornerShape(12.dp),
+                                    border = androidx.compose.foundation.BorderStroke(1.dp, MedBorder)
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.AccountCircle,
+                                        contentDescription = "Google",
+                                        tint = Color(0xFFEA4335),
+                                        modifier = Modifier.size(20.dp)
+                                    )
+                                    Spacer(modifier = Modifier.width(10.dp))
+                                    Text(
+                                        text = "Continue with Google",
+                                        color = MedTextPrimary,
+                                        fontWeight = FontWeight.SemiBold,
+                                        fontSize = 13.sp
+                                    )
+                                }
+
+                                // Continue with Facebook
+                                OutlinedButton(
+                                    onClick = {
+                                        viewModel.quickLoginAsRole(selectedRole)
+                                    },
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(46.dp)
+                                        .testTag("btn_social_facebook"),
+                                    shape = RoundedCornerShape(12.dp),
+                                    border = androidx.compose.foundation.BorderStroke(1.dp, MedBorder)
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.Share,
+                                        contentDescription = "Facebook",
+                                        tint = Color(0xFF1877F2),
+                                        modifier = Modifier.size(20.dp)
+                                    )
+                                    Spacer(modifier = Modifier.width(10.dp))
+                                    Text(
+                                        text = "Continue with Facebook",
+                                        color = MedTextPrimary,
+                                        fontWeight = FontWeight.SemiBold,
+                                        fontSize = 13.sp
+                                    )
+                                }
+
+                                // Continue with Apple
+                                OutlinedButton(
+                                    onClick = {
+                                        viewModel.quickLoginAsRole(selectedRole)
+                                    },
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(46.dp)
+                                        .testTag("btn_social_apple"),
+                                    shape = RoundedCornerShape(12.dp),
+                                    border = androidx.compose.foundation.BorderStroke(1.dp, MedBorder)
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.PhoneIphone,
+                                        contentDescription = "Apple",
+                                        tint = Color.Black,
+                                        modifier = Modifier.size(20.dp)
+                                    )
+                                    Spacer(modifier = Modifier.width(10.dp))
+                                    Text(
+                                        text = "Continue with Apple",
+                                        color = MedTextPrimary,
+                                        fontWeight = FontWeight.SemiBold,
+                                        fontSize = 13.sp
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                                     )
                                 }
 
@@ -865,6 +982,7 @@ fun AuthScreen(
                                 modifier = Modifier.fillMaxWidth().testTag("signup_dob_input")
                             )
 
+<<<<<<< HEAD
                             // If Doctor: Additional fields & License / Photo Onboarding
                             if (regRole == "DOCTOR") {
                                 Surface(
@@ -997,6 +1115,39 @@ fun AuthScreen(
                                         }
                                     }
                                 }
+=======
+                            // If Doctor: Additional fields
+                            if (regRole == "DOCTOR") {
+                                OutlinedTextField(
+                                    value = regSpecialty,
+                                    onValueChange = { regSpecialty = it },
+                                    label = { Text("Medical Specialty (e.g. Cardiologist)") },
+                                    leadingIcon = { Icon(Icons.Outlined.Work, contentDescription = null, tint = MedBluePrimary) },
+                                    singleLine = true,
+                                    shape = RoundedCornerShape(12.dp),
+                                    modifier = Modifier.fillMaxWidth().testTag("signup_doctor_specialty")
+                                )
+
+                                OutlinedTextField(
+                                    value = regHospital,
+                                    onValueChange = { regHospital = it },
+                                    label = { Text("Affiliated Hospital / Clinic") },
+                                    leadingIcon = { Icon(Icons.Outlined.Apartment, contentDescription = null, tint = MedBluePrimary) },
+                                    singleLine = true,
+                                    shape = RoundedCornerShape(12.dp),
+                                    modifier = Modifier.fillMaxWidth().testTag("signup_doctor_hospital")
+                                )
+
+                                OutlinedTextField(
+                                    value = regLicense,
+                                    onValueChange = { regLicense = it },
+                                    label = { Text("Medical License ID") },
+                                    leadingIcon = { Icon(Icons.Outlined.VerifiedUser, contentDescription = null, tint = MedBluePrimary) },
+                                    singleLine = true,
+                                    shape = RoundedCornerShape(12.dp),
+                                    modifier = Modifier.fillMaxWidth().testTag("signup_doctor_license")
+                                )
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                             }
 
                             // Password
@@ -1057,11 +1208,15 @@ fun AuthScreen(
                                         dob = regDob,
                                         specialty = regSpecialty,
                                         hospital = regHospital,
+<<<<<<< HEAD
                                         license = regLicense,
                                         licenseImageUrl = regLicenseImageUrl,
                                         profilePhotoUrl = regProfilePhotoUrl,
                                         issuingCouncil = regIssuingCouncil,
                                         yearsExperience = regYearsExperience
+=======
+                                        license = regLicense
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                                     ) { success, msg ->
                                         if (!success) errorMessage = msg
                                     }
@@ -1107,6 +1262,7 @@ fun AuthScreen(
                 }
             }
         }
+<<<<<<< HEAD
 
         // 1. Account Already Exists / Account Linking Dialog
         accountCollisionPair?.let { (existingUser, socialIdentity) ->
@@ -1391,6 +1547,8 @@ fun AuthScreen(
                 }
             )
         }
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     }
 }
 
@@ -1503,6 +1661,7 @@ private fun RoleSelectionChip(
         }
     }
 }
+<<<<<<< HEAD
 
 /**
  * Minimalist, official social logo button with tap animation and accessible screen-reader labels.
@@ -1567,3 +1726,5 @@ private fun SocialLogoButton(
     }
 }
 
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465

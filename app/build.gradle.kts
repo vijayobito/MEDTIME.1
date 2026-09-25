@@ -46,9 +46,13 @@ android {
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
       signingConfig = signingConfigs.getByName("release")
     }
+<<<<<<< HEAD
     debug {
       // Uses standard Android SDK debug signing keystore automatically
     }
+=======
+    debug { signingConfig = signingConfigs.getByName("debugConfig") }
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
   }
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_11
@@ -82,12 +86,19 @@ dependencies {
   implementation(platform(libs.firebase.bom))
   // implementation(libs.accompanist.permissions)
   implementation(libs.androidx.activity.compose)
+<<<<<<< HEAD
   implementation(libs.androidx.camera.camera2)
   implementation(libs.androidx.camera.core)
   implementation(libs.androidx.camera.lifecycle)
   implementation(libs.androidx.camera.view)
   implementation(libs.barcode.scanning)
   implementation(libs.zxing.core)
+=======
+  // implementation(libs.androidx.camera.camera2)
+  // implementation(libs.androidx.camera.core)
+  // implementation(libs.androidx.camera.lifecycle)
+  // implementation(libs.androidx.camera.view)
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
   implementation(libs.androidx.compose.material.icons.core)
   implementation(libs.androidx.compose.material.icons.extended)
   implementation(libs.androidx.compose.material3)

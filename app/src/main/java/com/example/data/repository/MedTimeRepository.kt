@@ -2,10 +2,15 @@ package com.example.data.repository
 
 import android.content.Context
 import com.example.data.db.AppDatabase
+<<<<<<< HEAD
 import com.example.data.model.AnnouncementEntity
 import com.example.data.model.AppointmentEntity
 import com.example.data.model.AuditLogEntity
 import com.example.data.model.CaretakerAssistanceRequestEntity
+=======
+import com.example.data.model.AppointmentEntity
+import com.example.data.model.AuditLogEntity
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import com.example.data.model.CaretakerLinkEntity
 import com.example.data.model.MedicalDocumentEntity
 import com.example.data.model.MedicineEntity
@@ -13,6 +18,7 @@ import com.example.data.model.MedicineHistoryEntity
 import com.example.data.model.MedicineReminderEntity
 import com.example.data.model.MessageEntity
 import com.example.data.model.NotificationEntity
+<<<<<<< HEAD
 import com.example.data.model.PatientAddressEntity
 import com.example.data.model.UserEntity
 import com.example.data.model.WalletEntity
@@ -23,6 +29,9 @@ import com.example.data.remote.supabase.SupabaseConnectionResult
 import com.example.data.remote.supabase.SupabaseSyncManager
 import com.example.data.remote.supabase.SupabaseSyncResult
 import com.example.util.LocationUtils
+=======
+import com.example.data.model.UserEntity
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
@@ -34,7 +43,10 @@ import java.util.Locale
 import java.util.UUID
 
 class MedTimeRepository(context: Context) {
+<<<<<<< HEAD
     private val appContext = context.applicationContext
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     private val db = AppDatabase.getInstance(context)
     private val userDao = db.userDao()
     private val medicineDao = db.medicineDao()
@@ -46,6 +58,7 @@ class MedTimeRepository(context: Context) {
     private val documentDao = db.documentDao()
     private val notificationDao = db.notificationDao()
     private val auditLogDao = db.auditLogDao()
+<<<<<<< HEAD
     private val announcementDao = db.announcementDao()
     private val caretakerAssistanceDao = db.caretakerAssistanceDao()
     private val walletDao = db.walletDao()
@@ -55,6 +68,8 @@ class MedTimeRepository(context: Context) {
     val supabaseConfig = SupabaseConfig.getInstance(context)
     val supabaseClient = SupabaseClient.getInstance(context)
     val supabaseSyncManager = SupabaseSyncManager.getInstance(context)
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
 
     // ----------------------------------------------------
     // User / Auth
@@ -67,6 +82,7 @@ class MedTimeRepository(context: Context) {
         userDao.getUserByEmailOrPhone(query.trim())
     }
 
+<<<<<<< HEAD
     suspend fun findUserByEmail(email: String): UserEntity? = withContext(Dispatchers.IO) {
         userDao.getUserByEmail(email.trim())
     }
@@ -165,6 +181,8 @@ class MedTimeRepository(context: Context) {
         updated
     }
 
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     suspend fun registerUser(
         name: String,
         email: String,
@@ -174,11 +192,15 @@ class MedTimeRepository(context: Context) {
         dob: String = "1985-05-12",
         specialty: String = "",
         hospital: String = "",
+<<<<<<< HEAD
         license: String = "",
         licenseImageUrl: String = "",
         profilePhotoUrl: String = "",
         issuingCouncil: String = "State Medical Council",
         yearsExperience: Int = 5
+=======
+        license: String = ""
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     ): UserEntity = withContext(Dispatchers.IO) {
         val linkingCode = "MED-" + (1000..9999).random()
         val isDoctor = role == "DOCTOR"
@@ -190,16 +212,23 @@ class MedTimeRepository(context: Context) {
             phone = phone,
             password = password,
             dateOfBirth = dob,
+<<<<<<< HEAD
             isDoctorVerified = false,
+=======
+            isDoctorVerified = !isDoctor,
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             doctorVerificationStatus = if (isDoctor) "PENDING" else "APPROVED",
             doctorSpecialty = specialty,
             doctorHospital = hospital,
             doctorLicense = license,
+<<<<<<< HEAD
             doctorLicenseImageUrl = licenseImageUrl,
             doctorProfilePhotoUrl = profilePhotoUrl,
             doctorIssuingCouncil = issuingCouncil,
             doctorYearsExperience = yearsExperience,
             doctorVerificationSubmittedAt = System.currentTimeMillis(),
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             caretakerLinkingCode = linkingCode
         )
         userDao.insertUser(user)
@@ -295,6 +324,7 @@ class MedTimeRepository(context: Context) {
         )
     }
 
+<<<<<<< HEAD
     suspend fun deleteUser(userId: String) = withContext(Dispatchers.IO) {
         userDao.deleteUser(userId)
         logAudit(
@@ -305,6 +335,8 @@ class MedTimeRepository(context: Context) {
         )
     }
 
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     // ----------------------------------------------------
     // Medicines
     // ----------------------------------------------------
@@ -322,7 +354,11 @@ class MedTimeRepository(context: Context) {
         endDate: String,
         stock: Int,
         notes: String,
+<<<<<<< HEAD
         colorHex: Long = 0xFF2A7BF6L
+=======
+        colorHex: Long
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     ): MedicineEntity = withContext(Dispatchers.IO) {
         val medId = UUID.randomUUID().toString()
         val med = MedicineEntity(
@@ -434,6 +470,7 @@ class MedTimeRepository(context: Context) {
             )
         )
 
+<<<<<<< HEAD
         // Decrement stock and perform dosage-frequency threshold calculation
         val med = medicineDao.getMedicineById(reminder.medicineId)
         if (med != null && med.stockQuantity > 0) {
@@ -453,10 +490,19 @@ class MedTimeRepository(context: Context) {
 
                 val alertMessage = "Low Stock Alert: ${updatedMed.name} (${updatedMed.dosage}) is down to $newStock units remaining (~${String.format(Locale.US, "%.1f", daysSupply)} days supply at $dosesPerDay doses/day). Threshold is $threshold units."
 
+=======
+        // Decrement stock if possible
+        val med = medicineDao.getMedicineById(reminder.medicineId)
+        if (med != null && med.stockQuantity > 0) {
+            val updated = med.copy(stockQuantity = med.stockQuantity - 1)
+            medicineDao.updateMedicine(updated)
+            if (updated.stockQuantity <= 5) {
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
                 notificationDao.insertNotification(
                     NotificationEntity(
                         id = UUID.randomUUID().toString(),
                         userId = reminder.patientId,
+<<<<<<< HEAD
                         title = "⚠️ Refill Required: ${updatedMed.name}",
                         message = alertMessage,
                         type = "LOW_STOCK",
@@ -486,6 +532,13 @@ class MedTimeRepository(context: Context) {
                     target = "Medicine_${updatedMed.name}",
                     details = "Stock fell to $newStock (Threshold: $threshold, Days Supply: ${String.format(Locale.US, "%.1f", daysSupply)}). Alert sent to patient & caretakers ($caretakerNames)."
                 )
+=======
+                        title = "Low Medication Stock",
+                        message = "Only ${updated.stockQuantity} doses of ${med.name} left. Refill soon.",
+                        type = "MEDICINE"
+                    )
+                )
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             }
         }
 
@@ -495,12 +548,16 @@ class MedTimeRepository(context: Context) {
                 userId = reminder.patientId,
                 title = "Dose Recorded",
                 message = "Recorded ${reminder.medicineName} (${reminder.dosage}) as taken at ${SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date())}.",
+<<<<<<< HEAD
                 type = "MEDICINE",
                 recipientRole = "PATIENT",
                 recipientName = "Self",
                 deliveryChannels = "PUSH",
                 severity = "NORMAL",
                 relatedEntityId = reminder.medicineId
+=======
+                type = "MEDICINE"
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
             )
         )
 
@@ -512,6 +569,7 @@ class MedTimeRepository(context: Context) {
         )
     }
 
+<<<<<<< HEAD
     suspend fun refillMedicine(medicineId: String, addedUnits: Int): MedicineEntity? = withContext(Dispatchers.IO) {
         val med = medicineDao.getMedicineById(medicineId) ?: return@withContext null
         val newStock = med.stockQuantity + addedUnits
@@ -609,6 +667,8 @@ class MedTimeRepository(context: Context) {
         )
     }
 
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     suspend fun snoozeReminder(reminder: MedicineReminderEntity, minutes: Int = 15) = withContext(Dispatchers.IO) {
         val now = System.currentTimeMillis()
         val snoozeTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date(now + minutes * 60 * 1000L))
@@ -805,9 +865,12 @@ class MedTimeRepository(context: Context) {
     fun getCaretakerLinksForCaretaker(caretakerId: String): Flow<List<CaretakerLinkEntity>> =
         caretakerDao.getLinksForCaretaker(caretakerId)
 
+<<<<<<< HEAD
     fun getAllCaretakerLinks(): Flow<List<CaretakerLinkEntity>> =
         caretakerDao.getAllLinks()
 
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     suspend fun requestCaretakerLink(
         caretaker: UserEntity,
         linkingCode: String
@@ -867,6 +930,7 @@ class MedTimeRepository(context: Context) {
         caretakerDao.updatePermissions(linkId, medicines, adherence, appointments, alerts)
     }
 
+<<<<<<< HEAD
     suspend fun deleteCaretakerLink(linkId: String) = withContext(Dispatchers.IO) {
         caretakerDao.deleteLink(linkId)
         logAudit(
@@ -972,6 +1036,8 @@ class MedTimeRepository(context: Context) {
         med
     }
 
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     // ----------------------------------------------------
     // Documents
     // ----------------------------------------------------
@@ -1047,6 +1113,7 @@ class MedTimeRepository(context: Context) {
         documentDao.toggleFavorite(docId, isFavorite)
     }
 
+<<<<<<< HEAD
     fun getRecycleBinDocuments(patientId: String): Flow<List<MedicalDocumentEntity>> =
         documentDao.getRecycleBinDocuments(patientId)
 
@@ -1099,6 +1166,10 @@ class MedTimeRepository(context: Context) {
             target = "MedicalDocument",
             details = "Moved document $docId to Recycle Bin"
         )
+=======
+    suspend fun deleteDocument(docId: String) = withContext(Dispatchers.IO) {
+        documentDao.deleteDocument(docId)
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     }
 
     // ----------------------------------------------------
@@ -1114,14 +1185,18 @@ class MedTimeRepository(context: Context) {
         notificationDao.markAsRead(id)
     }
 
+<<<<<<< HEAD
     suspend fun markNotificationUnread(id: String) = withContext(Dispatchers.IO) {
         notificationDao.markAsUnread(id)
     }
 
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     suspend fun markAllNotificationsRead(userId: String) = withContext(Dispatchers.IO) {
         notificationDao.markAllAsRead(userId)
     }
 
+<<<<<<< HEAD
     suspend fun deleteNotification(id: String) = withContext(Dispatchers.IO) {
         notificationDao.deleteNotification(id)
     }
@@ -1150,11 +1225,14 @@ class MedTimeRepository(context: Context) {
         )
     }
 
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     // ----------------------------------------------------
     // Admin & Audit
     // ----------------------------------------------------
     fun getAuditLogs(): Flow<List<AuditLogEntity>> = auditLogDao.getAllLogs()
 
+<<<<<<< HEAD
     suspend fun submitDoctorCredentials(
         doctorId: String,
         license: String,
@@ -1188,6 +1266,8 @@ class MedTimeRepository(context: Context) {
         updated
     }
 
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     suspend fun verifyDoctor(doctorId: String, isApproved: Boolean, adminName: String) = withContext(Dispatchers.IO) {
         val user = userDao.getUserById(doctorId).firstOrNull()
         if (user != null) {
@@ -1217,6 +1297,7 @@ class MedTimeRepository(context: Context) {
         }
     }
 
+<<<<<<< HEAD
     // ----------------------------------------------------
     // Announcements & Broadcasts
     // ----------------------------------------------------
@@ -1933,6 +2014,8 @@ class MedTimeRepository(context: Context) {
         )
     }
 
+=======
+>>>>>>> 4f93c3ba4af1622bb07741d40563cd12f81cc465
     suspend fun logAudit(action: String, performedBy: String, target: String, details: String) {
         auditLogDao.insertLog(
             AuditLogEntity(
